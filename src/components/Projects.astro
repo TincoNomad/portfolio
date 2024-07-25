@@ -1,0 +1,35 @@
+---
+
+const PROJECTS = [
+  {
+    title: "Project 1",
+    description:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link: "https://sumakkawsay.pe/",
+    github: "https://github.com/TincoNomad",
+    image: "/mokeup.webp",
+    tags: ["web-3", "web-2", "wordpress"],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ title, description, image, tags }) => (
+    <article>
+      <ul class="flex space-x-4">
+        {tags.map((tag) => (
+          <li class="border-2 rounded-xl px-2 py-1 text-xl md:text-base">{tag}</li>
+        ))}
+      </ul>
+      <h3 class="text-3xl md:text-lg font-semibold my-5">{title}</h3>
+      <p class="text-2xl md:text-base font-normal text-pretty text-center lg:text-left">{description}</p>
+      <div class="flex justify-center items-center p-20 md:p-0 md:my-5">
+        <img
+          class="rounded-xl border-2"
+          src={image}
+          alt={`Project screenshot ${title}`}
+        />
+      </div>
+    </article>
+  ))
+}

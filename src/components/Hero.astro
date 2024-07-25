@@ -1,0 +1,57 @@
+---
+import Badge from "../components/Badge.astro";
+import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
+import GithubIcon from "../components/icons/GithubIcon.astro";
+import MailIcon from "../components/icons/MailIcon.astro";
+import SocialPill from "../components/SocialPill.astro";
+---
+
+<div class="my-10">
+  <div class="lg:flex items-center justify-center p-4 space-y-4">
+    <div class="w-full flex justify-center items-center lg:w-1/2">
+      <img class="w-1/2 h-1/2" src="/avatar500x500.png" alt="my photo" />
+    </div>
+    <div class="w-full lg:w-2/3">
+      <h1
+        class="text-6xl text-center lg:text-left md:text-2xl lg:text-3xl xl:text-4xl font-bold"
+      >
+        Hi, I'm Renzo Tincopa
+      </h1>
+      <div class="flex justify-end text-3xl md:text-sm">
+        <h1>
+          @tinconomad
+          <a
+            class="ml-2"
+            href="https://www.linkedin.com/in/tinconomad/"
+            target="_blank"
+            rel="noopener noreferrer"><Badge>Ready for work</Badge></a
+          >
+        </h1>
+      </div>
+    </div>
+  </div>
+  <h2
+    class="text-3xl my-10 text-center bg-gray-600/40 backdrop-blur-md rounded-xl p-2 md:text-xl lg:my-4"
+  >
+    Smart Contract Developer specializing in Solidity, Stacks and integrations
+    with Rust, Python and Node.js. Proficient in product development. Innovating
+    and facilitating the development of new products. Adept at assisting
+    existing products in their seamless transition to the Web 3.0 era, ensuring
+    they remain competitive and future-ready in the rapidly evolving blockchain
+    landscape.
+  </h2>
+  <nav class="space-y-4 lg:flex lg:space-x-4 text-2xl md:text-sm">
+    <SocialPill href="https://www.linkedin.com/in/tinconomad/">
+      <LinkedInIcon class="size-6" />
+      LinkedIn
+    </SocialPill>
+    <SocialPill href="https://github.com/TincoNomad">
+      <GithubIcon class="size-6" />
+      Github
+    </SocialPill>
+    <SocialPill href="mailto:renzotincopa@icloud.com">
+      <MailIcon class="size-6" />
+      renzotincopa@icloud.com
+    </SocialPill>
+  </nav>
+</div>

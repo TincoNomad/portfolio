@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Experience from "../components/Experience.astro";
+import SectionConteiner from "../components/SectionConteiner.astro";
+import BriefcaseIcon from "../components/icons/BriefcaseIcon.astro";
+import CodeIcon from "../components/icons/CodeIcon.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout
+  title="Portfolio Renzo Tincopa - Desarrollador y Programador web, web3, Solidity y Blockchain"
+  description="Contrata a Renzo Tincopa, Desarrollador y Programador web, web3, Solidity y Blockchain. Especializado en Solidity, Stacks y Rust. Integraciones con Python y Node.js."
+>
+  <main>
+    <SectionConteiner id="top">
+      <Hero /> 
+    </SectionConteiner>
+    <SectionConteiner id="experience">
+      <div class="flex justify-center items-center">
+        <img src="ExperienceLogo.webp" alt="Renzo Tincopa" class="w-1/2 h-1/2"/>
+      </div>
+      <h2 class="my-4 text-3xl md:text-xl font-semibold flex items-center gap-x-2">
+        <BriefcaseIcon class="size-6" />
+        Experience
+      </h2>
+      <Experience />
+    </SectionConteiner>
+    <SectionConteiner id="projects">
+      <h2 class="my-4 text-3xl md:text-xl font-semibold flex items-center gap-x-2">
+        <CodeIcon class="size-6" />
+        Projects
+      </h2>
+      <Projects />
+    </SectionConteiner>
+  </main>
+</Layout>

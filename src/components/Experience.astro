@@ -1,0 +1,40 @@
+---
+import ExperienceItems from "./ExperienceItems.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Dicember 23 - Currently...",
+    title: "Application UI code in Tailwind CSS",
+    description:
+      "My focus is on expanding our business portfolio, maintaining continuous communication with our customers. This is done, to understand their needs and transform them into tangible improvements for our products. My passion lies in discovering innovative solutions for a perfect integration of digital technology and smart contracts, thus driving the company's growth and success.",
+  },
+  {
+    date: "July 23 - Currendly...",
+    title: "Web 3 development freelance",
+    description:
+      "Smart Contract Developer specializing in Solidity. Proficient in product development using cutting-edge technologies, including Astro, React.js, Nest.js, wagmi, and web3.js. Innovating and facilitating the development of new products. Adept at assisting existing products in their seamless transition to the Web 3.0 era, ensuring they remain competitive and future-ready in the rapidly evolving blockchain landscape",
+  },
+  {
+    date: "Febrero 22 - June 23",
+    title: "Platzi Student Success",
+    description:
+      "Maintained continuous communication with the Discord community through various channels, including email. Proactively addressed inquiries and resolved product-related issues, focusing on identifying solutions that would enhance both the platform and the student experience. Developed engaging dynamics, conducted live discussions, and organized welcoming activities to inspire students to thrive on the platform. Offered ongoing support and gathered valuable insights for platform enhancement. Delivered information to the development team in a clear and user-friendly manner.",
+  },
+  {
+    date: "2010 - June 2020",
+    title: "Backpacker across Latin America",
+    description:
+      "Get started with dozens of web components and interactive elements built on top of Tailwind CSS.",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-1">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItems {...experience} />
+      </li>
+    ))
+  }
+</ol>
