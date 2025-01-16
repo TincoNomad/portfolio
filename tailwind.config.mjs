@@ -3,10 +3,20 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	darkMode: 'class',
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				'comic': ['Comic Sans MS', 'Comic Sans', 'cursive'],
+				'webcomic': ['Webcomic', 'Comic Sans MS', 'cursive'],
+				'action': ['Action Comics', 'Comic Sans MS', 'cursive'],
+			},
+			backgroundImage: {
+				'vento-pattern': "url('/vento-bg.png')",
+				'halftone': "url('/halftone.png')",
+			}
+		},
 		colors: {
 			black: '#202020',
-			white: '#F6F1E9',
+			white: '#F4F6FF',
 			complementary: '#FFD93D',
 			renzo: {
 				100: '#fff5d3',
@@ -25,7 +35,7 @@ export default {
 			'impact': ['Impact', 'sans-serif'],
 			'webcomic': ['Webcomic', 'sans-serif'],
 			'quicksand': ['Quicksand', 'sans-serif'],
-		  },
+		},
 	},
 	plugins: [],
 }

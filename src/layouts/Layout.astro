@@ -19,10 +19,16 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="px-10 py-5">
-    <Header />
-    <slot />
-    <Footer />
+  <body>
+    <div class="px-10">
+      <Header />
+    </div>
+    <main>
+      <slot />
+    </main>
+    <div class="px-10">
+      <Footer />
+    </div>
   </body>
 </html>
 <style is:global>
