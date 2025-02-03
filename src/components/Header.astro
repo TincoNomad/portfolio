@@ -28,25 +28,46 @@ const navItems = [
 ];
 ---
 
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mb-8"
->
-  <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 justify-center items-center"
+<header class="fixed top-0 left-0 z-10 w-full flex justify-center">
+  <div 
+    id="header-nav" 
+    class="mx-auto w-full md:w-2/3 lg:w-1/2 
+    bg-white/95 backdrop-blur-sm
+    border-4 border-black rounded-xl
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+    transition-all duration-300"
   >
-    {
-      navItems.map((link) => (
-        <a
-          class="relative block px-2 py-2 transition hover:text-[#fd8421]"
-          aria-label={link.label}
-          href={link.url}
-        >
-          {link.title}
-        </a>
-      ))
-    }
-  </nav>
+    <nav class="flex justify-center items-center p-4 transform rotate-[0.5deg]">
+      {
+        navItems.map((link) => (
+          <a
+            class="relative px-4 py-2 text-lg font-bold text-black 
+            transition-all duration-300 ease-in-out
+            hover:text-[#fd8421] hover:scale-110"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
 </header>
+
+<style>
+  #header-nav {
+    animation: blur linear both 0.5s;
+    animation-timeline: scroll();
+    animation-range: 0 500px;
+  }
+
+  @keyframes blur {
+    to {
+      @apply bg-white/95 backdrop-blur-sm;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener("astro:page-load", () => {

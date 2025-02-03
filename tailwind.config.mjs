@@ -5,10 +5,10 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				'comic': ['Comic Sans MS', 'Comic Sans', 'cursive'],
-				'webcomic': ['Webcomic', 'Comic Sans MS', 'cursive'],
-				'action': ['Action Comics', 'Comic Sans MS', 'cursive'],
-			},
+				'impact': ['Impact'],
+				'webcomic': ['Webcomic'],
+				'quicksand': ['Quicksand'],
+			  },
 			backgroundImage: {
 				'vento-pattern': "url('/vento-bg.png')",
 				'halftone': "url('/halftone.png')",

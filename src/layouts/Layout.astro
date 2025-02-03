@@ -17,6 +17,7 @@ const { description, title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
   <body>
@@ -35,8 +36,23 @@ const { description, title } = Astro.props;
   :root {
     color-scheme: light dark;
   }
+  /* Estilos globales para títulos */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-impact;
+  }
+
+  /* Estilos globales para botones */
+  button, .btn {
+    @apply font-webcomic;
+  }
+
+  /* Estilos globales para texto general */
+  p, span, div {
+    @apply font-quicksand;
+  }
+  
   html {
-    font-family: system-ui, sans-serif;
+    /* font-family: system-ui, sans-serif; */
     scroll-behavior: smooth;
   }
 
