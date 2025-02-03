@@ -90,12 +90,30 @@ const navItems = [
 
     const observer = new IntersectionObserver(callback, {
       root: null,
-      rootMargin: "-20% 0px -80% 0px",
+      rootMargin: "0px 0px -80% 0px", // Ajustado aquí - quité el -20% superior
       threshold: 0.1,
     });
 
     sections.forEach((section) => {
       observer.observe(section);
+    });
+    
+    // Agregar scroll suave para los enlaces
+    navItems.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href?.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'  // Alinea la sección al inicio de la ventana
+            });
+          }
+        }
+      });
     });
 
     // Cleanup function
