@@ -1,0 +1,21 @@
+---
+import type { SectionContainerProps } from '../../../types/containers';
+
+const { id, variant = 'primary', className = '' } = Astro.props as SectionContainerProps;
+---
+
+<section 
+  id={id}
+  class:list={[
+    'mx-auto md:w-2/3 lg:w-1/2 min-h-screen',
+    'bg-white/80 backdrop-blur-sm border-4 border-black',
+    'transform rotate-[0.5deg] rounded-lg',
+    'shadow-[8px_8px_0px_0px_rgba(0,0,0,0.8)]',
+    variant === 'primary' ? 'pt-16' : 'py-20 my-8',
+    className
+  ]}
+>
+  <div class="transform -rotate-[0.5deg]">
+    <slot/>
+  </div>
+</section>
