@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-image: url("portfoliobg.webp");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer typography {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-impact;
+  }
+
+  button, .btn {
+    @apply font-webcomic;
+  }
+
+  p, span, div {
+    @apply font-quicksand;
+  }
+}
+
+@layer components {
+  /* Container Styles */
+  .container-base {
+    @apply mx-auto md:w-2/3 lg:w-1/2 min-h-screen;
+  }
+
+  .container-comic {
+    @apply relative bg-white p-6 rounded-3xl border-4 border-black font-comic;
+  }
+
+  .container-section {
+    @apply bg-white/80 backdrop-blur-sm border-4 border-black 
+           transform rotate-[0.5deg] rounded-lg
+           shadow-[8px_8px_0px_0px_rgba(0,0,0,0.8)];
+  }
+
+  /* Button & Badge Styles */
+  .badge-base {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .social-pill {
+    @apply flex items-center bg-white/5 border border-white/10 rounded-full 
+           transition hover:scale-110 hover:bg-white/10;
+  }
+}
