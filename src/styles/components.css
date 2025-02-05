@@ -59,6 +59,19 @@
            shadow-[8px_8px_0px_0px_rgba(0,0,0,0.8)];
   }
 
+  /* New interaction utilities */
+  .hover-effect {
+    @apply transition-transform duration-200 
+    hover:scale-105 
+    active:scale-100;
+  }
+
+  .link-feedback {
+    @apply transition-all duration-200 
+    hover:text-renzo-500 
+    active:text-renzo-700;
+  }
+
   /* Button & Badge Styles */
   .badge-base {
     @apply px-2 py-1 rounded-full text-xs font-medium;
