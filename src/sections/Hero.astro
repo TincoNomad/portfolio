@@ -4,48 +4,53 @@ import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
 import MailIcon from "../components/icons/MailIcon.astro";
 import SocialPill from "../components/ui/buttons/SocialPill.astro";
-import ComicBubble from "../components/ui/containers/ComicBubble.astro";
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 p-4 text-black">
-  
-  <!-- Avatar Box -->
-  <div class="md:col-span-1 md:row-span-2 bg-white rounded-xl border-4 border-black p-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 text-black">
+  <!-- Avatar Box - Full height -->
+  <div class="md:col-span-1 h-full bg-white rounded-xl border-4 border-black p-4">
     <img 
-      class="w-full h-auto rounded-lg" 
+      class="w-full h-full object-cover rounded-lg" 
       src="/avatar500x500.png" 
       alt="my photo" 
     />
   </div>
 
-  <!-- Greeting Box -->
-  <div class="md:col-span-2 md:row-span-1 bg-white rounded-xl border-4 border-black p-4">
-    <!-- <ComicBubble type="shout"> -->
+  <!-- Right Column - 2 rows -->
+  <div class="md:col-span-2 grid grid-rows-2 gap-4">
+    <!-- Greeting Box -->
+    <div class="h-full" style={{
+      backgroundImage: "url('/TextBubble.svg')",
+      backgroundSize: "463px 311px", // Matches SVG viewBox dimensions
+      backgroundRepeat: "no-repeat",
+      padding: "2rem",
+      width: "463px",
+      height: "311px"
+    }}>
       <h1 class="text-4xl font-bold">Hi, I'm Renzo Tincopa!</h1>
-    <!-- </ComicBubble> -->
-    <!-- <ComicBubble type="thought" direction="right"> -->
       <h2 class="text-2xl">Smart Contract Developer</h2>
-    <!-- </ComicBubble> -->
-    <div class="flex justify-end items-center mt-2">
-      <span class="text-xl">@tinconomad</span>
-      <a
-        class="ml-2"
-        href="https://www.linkedin.com/in/tinconomad/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Badge>Ready for work</Badge>
-      </a>
+      <div class="flex justify-end items-center mt-2">
+        <span class="text-xl">@tinconomad</span>
+        <a
+          class="ml-2"
+          href="https://www.linkedin.com/in/tinconomad/"
+          target="_blank"
+          rel="noopener"
+        >
+          <Badge>Ready for work</Badge>
+        </a>
+      </div>
+    </div>
+
+    <!-- Role Box -->
+    <div class="bg-white rounded-xl border-4 border-black p-4">
+      <a>soy un div en blanco</a>
     </div>
   </div>
-
-  <!-- Role Box -->
-  <div class="md:col-span-2 md:row-span-1 bg-white rounded-xl border-4 border-black p-4">
-    
-  </div>
+</div>
 
   <!-- Description Box -->
-  <div class="md:col-span-3 md:row-span-1 bg-white rounded-xl border-4 border-black p-4">
+  <div class="md:col-span-3 md:row-span-1 bg-white rounded-xl border-4 border-black p-4 text-black">
     <p class="text-lg">
       Smart Contract Developer specializing in Solidity, Stacks and integrations
       with Rust, Python and Node.js. Proficient in product development. Innovating
@@ -70,8 +75,4 @@ import ComicBubble from "../components/ui/containers/ComicBubble.astro";
       renzotincopa@icloud.com
     </SocialPill>
   </nav>
-
-  <ComicBubble>
-    <img src="/globo-de-texto.svg" alt="Comic Bubble" />
-  </ComicBubble>
 </div>
