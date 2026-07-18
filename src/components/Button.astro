@@ -1,0 +1,9 @@
+---
+const { href } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class="btn" {href}>
+  <span class="shadow"></span>
+  <span class="face"><slot/></span>
+</Tag>

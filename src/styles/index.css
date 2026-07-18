@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./tokens.css";
+@import "./theme.css";
 
 body {
   max-width: 768px;
@@ -9,6 +9,13 @@ body {
   padding: 16px;
   box-sizing: border-box;
   font-family: var(--font-body);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #background {
@@ -21,13 +28,14 @@ body {
   filter: blur(100px);
 }
 
-h1, h2, h3 {
-  font-family: var(--font-heading);
-}
-
 h1 {
+  font-family: var(--font-display);
   font-size: 22px;
   margin-top: 0.25em;
+}
+
+h2, h3 {
+  font-family: var(--font-heading);
 }
 
 .links {
@@ -108,10 +116,6 @@ code {
   background: rgba(255, 255, 255, 1);
   border-radius: 16px;
   border: 1px solid white;
-}
-
-.tag .face {
-  font-family: var(--font-mono);
 }
 
 .news {

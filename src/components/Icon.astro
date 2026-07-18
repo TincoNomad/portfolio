@@ -1,0 +1,30 @@
+---
+import icons from '@iconify-json/simple-icons/icons.json';
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number;
+}
+
+const { name, class: className, size = 24 } = Astro.props;
+const icon = icons.icons[name.toLowerCase()];
+
+if (!icon) {
+  throw new Error(`Icon "${name}" not found in simple-icons`);
+}
+
+const width = icon.width ?? 24;
+const height = icon.height ?? 24;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={`0 0 ${width} ${height}`}
+  width={size}
+  height={size}
+  class={className}
+  aria-hidden="true"
+>
+  {icon.body}
+</svg>
