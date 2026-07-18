@@ -1,5 +1,9 @@
 @import "tailwindcss";
 @import "./theme.css";
+@import "@fontsource/bangers";
+@import "@fontsource/bebas-neue";
+@import "@fontsource/nunito";
+@import "@fontsource/jetbrains-mono";
 
 body {
   max-width: 768px;
@@ -18,6 +22,16 @@ section {
   align-items: center;
 }
 
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--color-body);
+}
+
 #background {
   position: fixed;
   top: 0;
@@ -34,7 +48,8 @@ h1 {
   margin-top: 0.25em;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-family: var(--font-heading);
 }
 

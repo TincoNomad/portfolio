@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro'
 import background from '../assets/background.svg'
+import Footer from '../components/Footer.astro'
 import '../styles/index.css'
 ---
 <!doctype html>
@@ -17,7 +18,8 @@ import '../styles/index.css'
 		<main>
 			<img id="background" src={background.src} alt="" fetchpriority="high" />
 			<Header />
-			<slot />
+            <slot />
+            <Footer />
 		</main>
 	</body>
 </html>
