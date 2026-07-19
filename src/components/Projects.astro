@@ -1,5 +1,8 @@
 ---
-const PROJETCS =[
+
+import ProjectsItem from './ProjectsItem.astro'
+
+const PROJECTS =[
 {
 title:'Project 1',
 description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate',
@@ -7,21 +10,22 @@ link:'#',
 github:'#',
 image:'#',
 tags:['html','css','javascript'],
-    }
-]
+},
+];
+
+const allTags = [...new Set(PROJECTS.flatMap(p => p.tags))]
 ---
 
 <section>
-    {
-    PROJETCS.map(({ image, title, description, link, github, tags}) =>(
-    <article>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <ul class='gap-2'>
-            {tags.map(tag=>(<li>tag</li>))}
-        </ul>
-        <img src="{image}" alt={`Project screenshot ${image}`}>
-    </article>
-    ))
-    }
+    <div class='flex gap-4'>
+       <button type="button" data-tag='all' class='filter-btn active'>all</button>
+        {allTags.map(tag => (
+        <button type="" data-tag={tag} class='fitler-btn'>{tag}</button>
+        ))}
+    </div>
+    <div>
+        {PROJECTS.map(project => (
+        <ProjectsItem {...project} />
+        ))}        
+    </div>
 </section>

@@ -1,0 +1,26 @@
+---
+interface Props{
+title: string;
+description: string;
+tags: string[];
+link?: string;
+github?: string;
+image: string;
+}
+
+const {title, description, tags, link, github, image} = Astro.props;
+---
+
+<article data-tags={tags.join(',')}>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <ul class='gap-2'>
+        {tags.map(tag=>(<li>{tag}</li>))}
+    </ul>
+    <div class='flex gap-4'>
+        {link && <a href={link}>More</a>}
+        {github && <a href={github}>GitHub</a>}
+    </div>
+    <img src={image} alt={`Screenshot of ${image}`}>
+</article>
+

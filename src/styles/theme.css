@@ -18,4 +18,9 @@
   --radius-lg: 18px;
 
   --border-w: 2.5px;
+
+  --dot-sm: radial-gradient(circle, #11111133 1px, transparent 1px);
+  --dot-md: radial-gradient(circle, #11111133 1.5px, transparent 1.5px);
+  --dot-lg: radial-gradient(circle, var(--color-orange-dark) 1.5px, transparent 1.5px);
+  --dot-dark: radial-gradient(circle, #11111122 1.5px, transparent 1.5px);
 }
