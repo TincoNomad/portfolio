@@ -13,11 +13,13 @@ import '../styles/index.css'
 		<meta name="generator" content={Astro.generator} />
 		<title>Renzo Tincopa software blacksmith</title>
 	</head>
-	<body>
-		<main> 
-            <div id='background'></div>
-			<Header />
-            <slot />
+    <body>
+        <div id='background'></div>
+		<main >  
+            <Header />
+            <div class="flex-1 max-w-3xl w-full  px-[clamp(1rem,3vw,2rem)]">
+                <slot />
+            </div>
             <Footer />
 		</main>
 	</body>

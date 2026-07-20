@@ -3,17 +3,17 @@ import logo from '../../public/logo.png'
 
 ---
 
-<header class="flex justify-between">
+<header>
     <div class="flex justify-center h-14 w-14 rounded-xl">
         <img src='/logo.png' alt="tincox01 photo">
     </div>
     <div class="flex justify-even">
         <nav class='flex items-center'>
             <ul class='gap-4'>
-                <li><a class='nav-link' href="">Home</a></li>
-                <li><a class='nav-link' href="">Proyects</a></li>
-                <li><a class='nav-link' href="">About me</a></li>
-                <li><a class='nav-link' href="">Blog</a></li>
+                <li><a class='nav-link' href="#home">Home</a></li>
+                <li><a class='nav-link' href="#projects">Proyects</a></li>
+                <li><a class='nav-link' href="#about">About me</a></li>
+                <li><a class='nav-link' href="#blog">Blog</a></li>
             </ul>              
         </nav>
         <div class='ms-4'>
@@ -24,3 +24,35 @@ import logo from '../../public/logo.png'
         </div>  
     </div> 
 </header>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 0) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach(link => {
+                  link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+              });
+          }
+      });
+  }, {
+      threshold: 0,
+      rootMargin: '-20% 0px -80% 0px'
+  });
+
+  sections.forEach(section => observer.observe(section));
+
+</script>

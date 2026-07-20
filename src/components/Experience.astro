@@ -22,7 +22,7 @@ const EXPERIENCE = [
 const last = EXPERIENCE.length - 1;
 ---
 
-<section>
+<section id='experience'>
   <ol class="relative border-s border-default">
     {EXPERIENCE.map((item, i) => (
       <ExperienceItem {...item} isLast={i === last} />

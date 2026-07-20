@@ -16,7 +16,7 @@ tags:['html','css','javascript'],
 const allTags = [...new Set(PROJECTS.flatMap(p => p.tags))]
 ---
 
-<section>
+<section id='projects'>
     <div class='flex gap-4'>
        <button type="button" data-tag='all' class='filter-btn active'>all</button>
         {allTags.map(tag => (

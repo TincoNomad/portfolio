@@ -15,7 +15,7 @@ const {title, description, tags, link, github, image} = Astro.props;
     <h3>{title}</h3>
     <p>{description}</p>
     <ul class='gap-2'>
-        {tags.map(tag=>(<li>{tag}</li>))}
+        {tags.map(tag=>(<li class='tag'>{tag}</li>))}
     </ul>
     <div class='flex gap-4'>
         {link && <a href={link}>More</a>}
