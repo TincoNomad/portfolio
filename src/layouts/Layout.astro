@@ -1,6 +1,5 @@
 ---
 import Header from '../components/Header.astro'
-import background from '../assets/background.svg'
 import Footer from '../components/Footer.astro'
 import '../styles/index.css'
 ---
@@ -15,8 +14,8 @@ import '../styles/index.css'
 		<title>Renzo Tincopa software blacksmith</title>
 	</head>
 	<body>
-		<main>
-			<img id="background" src={background.src} alt="" fetchpriority="high" />
+		<main> 
+            <div id='background'></div>
 			<Header />
             <slot />
             <Footer />
