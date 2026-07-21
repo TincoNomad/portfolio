@@ -2,30 +2,116 @@
 
 import ProjectsItem from './ProjectsItem.astro'
 
-const PROJECTS =[
-{
-title:'Project 1',
-description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate',
-link:'#',
-github:'#',
-image:'#',
-tags:['html','css','javascript'],
-},
+const PROJECTS = [
+  {
+    title: 'Chasqui Server',
+    description: 'Backend en Rust con Actix-web para comunicación real-time vía WebSocket. Incluye autenticación JWT con Wallet Auth (Web3), integración con SurrealDB y arquitectura híbrida REST/WebSocket.',
+    github: 'https://github.com/wiracocha-labs/chasqui-server',
+    image: '/projects/chasqui-server.png',
+    tags: ['rust', 'actix-web', 'surrealdb', 'websocket', 'jwt'],
+  },
+  {
+    title: 'actix-admin',
+    description: 'Biblioteca Rust que genera automáticamente paneles de administración CRUD para Actix-web 4. Incluye autenticación por sesiones, UI responsive, búsqueda, paginación y validación de formularios.',
+    github: 'https://github.com/TincoNomad/actix-admin',
+    image: '/projects/actix-admin.png',
+    tags: ['rust', 'actix-web', 'admin-panel', 'crud'],
+  },
+  {
+    title: 'Avalanche eERC20 Skill',
+    description: 'Skill para desarrollar tokens privados eERC (Encrypted ERC) en Avalanche con privacidad real y auditabilidad selectiva. Incluye guías para modos Standalone/Converter, zk-SNARKs y despliegue paso a paso.',
+    github: 'https://github.com/TincoNomad/avalanche-eerc20-skill',
+    image: '/projects/avalanche-eerc20.png',
+    tags: ['rust', 'avalanche', 'zk-snarks', 'web3', 'ai-skill'],
+  },
+  {
+    title: 'Avalanche x402 Skill',
+    description: 'Guía completa para implementar pagos HTTP 402 pay-per-use en Avalanche. Incluye protocolo x402, seguridad EIP-712/EIP-3009, integración con facilitadores y patrones para agentes de IA.',
+    github: 'https://github.com/TincoNomad/avalanche-x402-skill',
+    image: '/projects/avalanche-x402.png',
+    tags: ['rust', 'avalanche', 'http-402', 'micropayments', 'ai-skill'],
+  },
+  {
+    title: 'pretty-curl (pcurl)',
+    description: 'HTTP pretty-printer para terminal. Formatea automáticamente JSON, alinea headers y agrega colores a respuestas de curl. Incluye cliente WebSocket interactivo con prefijos de mensajes coloreados.',
+    github: 'https://github.com/TincoNomad/pretty-curl',
+    image: '/projects/pretty-curl.png',
+    tags: ['rust', 'cli', 'http', 'websocket', 'terminal'],
+  },
+  {
+    title: 'OpenCode Warp Bridge',
+    description: 'Plugin + CLI bridge que envía output de terminal desde Warp directamente a tu sesión de OpenCode como contexto. Permite copiar-pegar seamless de terminal a prompts de IA.',
+    github: 'https://github.com/TincoNomad/opencode-warp-bridge',
+    image: '/projects/opencode-warp-bridge.png',
+    tags: ['typescript', 'plugin', 'opencode', 'warp', 'cli'],
+  },
 ];
 
-const allTags = [...new Set(PROJECTS.flatMap(p => p.tags))]
+const allTags = [...new Set(PROJECTS.flatMap(p => p.tags))];
 ---
 
 <section id='projects'>
-    <div class='flex gap-4'>
+    <div class='flex gap-4 flex-wrap'>
        <button type="button" data-tag='all' class='filter-btn active'>all</button>
         {allTags.map(tag => (
-        <button type="" data-tag={tag} class='fitler-btn'>{tag}</button>
+        <button type="button" data-tag={tag} class='filter-btn'>{tag}</button>
         ))}
     </div>
-    <div>
+    <div class='projects-grid'>
         {PROJECTS.map(project => (
         <ProjectsItem {...project} />
         ))}        
     </div>
 </section>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('[data-tags]');
+  const activeTags = new Set();
+
+  function updateUI() {
+    // Actualizar botones activos
+    filterBtns.forEach(btn => {
+      const tag = btn.dataset.tag;
+      if (tag === 'all') {
+        btn.classList.toggle('active', activeTags.size === 0);
+      } else {
+        btn.classList.toggle('active', activeTags.has(tag));
+      }
+    });
+
+    // Filtrar cards
+    projects.forEach(card => {
+      const cardTags = card.dataset.tags.split(',');
+      if (activeTags.size === 0) {
+        card.style.display = '';
+      } else {
+        const hasAll = [...activeTags].every(t => cardTags.includes(t));
+        card.style.display = hasAll ? '' : 'none';
+      }
+    });
+
+    // Actualizar URL
+    const newTag = activeTags.size > 0 ? `?tag=${[...activeTags].join(',')}` : '';
+    history.pushState({}, '', newTag || window.location.pathname);
+  }
+
+  // Event listeners
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag;
+      if (tag === 'all') {
+        activeTags.clear();
+      } else {
+        activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
+      }
+      updateUI();
+    });
+  });
+
+  // Inicializar desde URL
+  const params = new URLSearchParams(window.location.search);
+  const urlTags = params.get('tag')?.split(',').filter(Boolean) || [];
+  urlTags.forEach(tag => activeTags.add(tag));
+  if (urlTags.length > 0) updateUI();
+</script>
