@@ -56,9 +56,6 @@ const allTags = [...new Set(PROJECTS.flatMap(p => p.tags))];
 ---
 
 <section id='projects'>
-    <div class='w-full'>
-        <h2 class='has-dots items-start mb-0'>Projects</h2>
-    </div> 
     <div class='flex gap-4 flex-wrap items-center justify-center'>
        <button type="button" data-tag='all' class='badge active'>all</button>
         {allTags.map(tag => (
