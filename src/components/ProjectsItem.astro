@@ -17,12 +17,12 @@ const {title, description, tags, link, github, image, tree} = Astro.props;
   <div class="bubble bubble--card bubble--right">
     <h3>{title}</h3>
     <p>{description}</p>
-    <ul class='gap-2'>
+    <ul class='gap-2 my-4'>
       {tags.map(tag=>(<li class='tag'>{tag}</li>))}
     </ul>
     <div class='flex gap-4'>
-      {link && <a class='label' href={link}>More</a>}
-      {github && <a class='label' href={github}>GitHub</a>}
+      {link && <a class='badge' href={link} target='blank'>More</a>}
+      {github && <a class='badge' href={github} target='blank'>GitHub</a>}
     </div>
     <div class='project-media'>
       <img src={image} alt={`Screenshot of ${title}`}>
