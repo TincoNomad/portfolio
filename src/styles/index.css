@@ -353,6 +353,14 @@ a.badge {
   color: var(--color-black);
 }
 
+.project-bubble {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  max-width: 100%;
+  align-items: flex-start;
+}
+
 .bubble::before,
 .bubble::after {
   content: "";
@@ -424,43 +432,26 @@ a.badge {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: clamp(1rem, 3vw, 2rem);
   margin-top: clamp(1rem, 3vw, 2rem);
   width: 100%;
 }
 
-.project-media {
-  display: flex;
-  gap: clamp(0.5rem, 2vw, 1rem);
-  align-items: flex-start;
-}
-
-.project-media img {
-  max-width: 50%;
+.project-image {
+  width: 40%;
   height: auto;
-  border-radius: var(--radius-sm);
-}
-
-.project-media img:only-child {
-  max-width: 50%;
-}
-
-.bubble--card {
-  max-width: 100%;
-  width: 100%;
   display: block;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
 }
 
-.bubble--right::before {
-  left: auto;
-  right: 28px;
-}
-
-.bubble--right::after {
-  left: auto;
-  right: 31px;
+.project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .hero-image {
@@ -490,6 +481,14 @@ a.badge {
 
   .hero-image {
     width: clamp(120px, 40vw, 200px);
+  }
+
+  .project-bubble {
+    flex-direction: column;
+  }
+
+  .project-image {
+    width: 100%;
   }
 
   .links {
