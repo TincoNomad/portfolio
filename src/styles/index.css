@@ -428,6 +428,7 @@ a.badge {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: clamp(1rem, 3vw, 2rem);
   margin-top: clamp(1rem, 3vw, 2rem);
+  width: 100%;
 }
 
 .project-media {
@@ -462,6 +463,15 @@ a.badge {
   right: 31px;
 }
 
+.hero-image {
+  width: clamp(150px, 25vw, 250px);
+  height: auto;
+  border: 6px solid var(--color-black);
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 @media screen and (max-height: 368px) {
   .news {
     display: none;
@@ -472,6 +482,14 @@ a.badge {
   .hero {
     display: block;
     padding-top: 10%;
+  }
+
+  .hero-content {
+    flex-direction: column;
+  }
+
+  .hero-image {
+    width: clamp(120px, 40vw, 200px);
   }
 
   .links {
