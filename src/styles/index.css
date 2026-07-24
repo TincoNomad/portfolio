@@ -47,8 +47,10 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 48rem; /* 768px = 3xl */
   width: 100%;
-  padding: clamp(1rem, 4vw, 3rem);
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
 }
 
 ul {
