@@ -33,13 +33,17 @@ const FEATURED_PROJECTS = [
 ];
 ---
 
-<section id='projects' class='!px-0'>
+<section id='projects' class='!px-0 scroll-mt-30''>
   <div class='w-full'>
-    <h2 class='has-dots items-start mb-0'>Projects</h2>
+    <h2 class='has-dots items-start'>Projects</h2>
   </div>
   <div class='projects-grid'>
     {FEATURED_PROJECTS.map(project => (
       <ProjectsItem {...project} />
     ))}
+  </div>
+  <div class='flex my-4'>
+      <p class='bubble'>You can see more on of my work in my github or in Wiracochalab.com</p>
+      <img src="/yo_dragonball_2.png" alt="" class='h-40 w-40'>
   </div>
 </section>

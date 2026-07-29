@@ -5,6 +5,7 @@ import About from '../components/About.astro';
 import ProjectsHome from '../components/ProjectsHome.astro'
 import HowIwork from '../components/HowIwork.astro'
 import Blog from '../components/Blog.astro'
+import Reviews from '../components/Reviews.astro'
 
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -12,11 +13,14 @@ import Blog from '../components/Blog.astro'
 ---
 
 <Layout tetle='' description=''>
-    <Hero />
-    <ProjectsHome />
-    <div class='flex items-center justify-center bg-[url("/arbol_pixel_1.webp")] !w-screen bg-bottom bg-auto'>
+    <div class='w-screen relative left-[calc(-50vw+50%)] bg-sunset'>
+        <Hero />
+        <ProjectsHome />
         <HowIwork />
     </div>
-    <About />
-    <Blog />
+    <div class='w-screen relative left-[calc(-50vw+50%)] bg-stars'>
+        <About />
+        <Blog />
+        <Reviews />
+    </div>
 </Layout>
