@@ -1,0 +1,21 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  text: string;
+  linkedin?: string;
+}
+
+const { name, role, text, linkedin } = Astro.props;
+---
+
+<article class="bubble review-bubble">
+  <h3>{name}</h3>
+  <p class="review-role">{role}</p>
+  <p class="review-text">{text}</p>
+  {linkedin && (
+    <a class="badge" href={linkedin} target="_blank" rel="noopener">
+      LinkedIn
+    </a>
+  )}
+</article>
