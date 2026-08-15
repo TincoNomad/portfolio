@@ -14,9 +14,12 @@ import Reviews from '../components/Reviews.astro'
 
 <Layout tetle='' description=''>
     <div class='w-screen relative left-[calc(-50vw+50%)] bg-sunset'>
-        <Hero />
-        <ProjectsHome />
-        <HowIwork />
+        <div class='clouds-scattered'></div>
+        <div class='relative z-10'>
+            <Hero />
+            <ProjectsHome />
+            <HowIwork />
+        </div>
     </div>
     <div class='w-screen relative left-[calc(-50vw+50%)] bg-stars'>
         <About />
@@ -24,3 +27,21 @@ import Reviews from '../components/Reviews.astro'
         <Reviews />
     </div>
 </Layout>
+
+<script>
+  // Genera nubes dispersas aleatoriamente: garantiza presencia en arriba, medio y abajo
+  const container = document.querySelector('.clouds-scattered');
+  const zones = [[0, 30], [30, 60], [60, 92]]; // % vertical: hero, projects, howIwork
+
+  zones.forEach(([min, max]) => {
+    const count = 2 + Math.floor(Math.random() * 2); // 2-3 nubes por zona
+    for (let i = 0; i < count; i++) {
+      const cloud = document.createElement('div');
+      cloud.className = 'cloud';
+      cloud.style.top = `${min + Math.random() * (max - min)}%`;
+      cloud.style.width = '266.6px'; // tamaño anterior (150px de alto, proporción 1365x768)
+      cloud.style.animationDelay = `${-Math.random() * 60}s`; // posición horizontal aleatoria
+      container.appendChild(cloud);
+    }
+  });
+</script>

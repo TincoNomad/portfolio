@@ -85,7 +85,7 @@ ul {
 h1 {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  margin-top: 0.25em;
+  /*margin-top: 0.25em;*/
 }
 
 h2 {
@@ -103,17 +103,75 @@ h3 {
 
 /* Noche: negro con estrellas */
 .bg-stars {
-  background-color: #000;
+  background-color: #111111;
   background-image:
     radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 45% 15%, white, transparent),
+    radial-gradient(1px 1px at 72% 8%, white, transparent),
     radial-gradient(2px 2px at 60% 70%, white, transparent),
-    /* ... más estrellas ... */;
+    radial-gradient(1px 1px at 38% 55%, white, transparent),
+    radial-gradient(1px 1px at 88% 42%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(2px 2px at 12% 65%, white, transparent),
+    radial-gradient(1px 1px at 67% 33%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 25% 88%, white, transparent),
+    radial-gradient(1px 1px at 55% 77%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 5% 45%, white, transparent),
+    radial-gradient(1px 1px at 42% 92%, white, transparent),
+    radial-gradient(1px 1px at 33% 80%, white, transparent),
+    radial-gradient(2px 2px at 78% 25%, white, transparent),
+    radial-gradient(1px 1px at 15% 12%, white, transparent),
+    radial-gradient(1px 1px at 15% 90%, white, transparent),
+    radial-gradient(2px 2px at 50% 5%, white, transparent),
+    radial-gradient(1px 1px at 92% 78%, white, transparent),
+    radial-gradient(2px 2px at 75% 40%, white, transparent),
+    radial-gradient(1px 1px at 30% 22%, white, transparent),
+    radial-gradient(1px 1px at 63% 85%, white, transparent),
+    radial-gradient(1px 1px at 45% 20%, white, transparent),
+    radial-gradient(2px 2px at 8% 35%, white, transparent),
+    radial-gradient(1px 1px at 97% 55%, white, transparent),
+    radial-gradient(1px 1px at 85% 85%, white, transparent),
+    radial-gradient(2px 2px at 40% 48%, white, transparent),
+    radial-gradient(1px 1px at 70% 95%, white, transparent),
+    radial-gradient(2px 2px at 10% 60%, white, transparent),
+    radial-gradient(1px 1px at 58% 38%, white, transparent),
+    radial-gradient(1px 1px at 22% 72%, white, transparent),
+    radial-gradient(1px 1px at 55% 95%, white, transparent),
+    radial-gradient(2px 2px at 83% 18%, white, transparent),
+    radial-gradient(1px 1px at 48% 62%, white, transparent);
   background-size: 100% 100%;
 }
 
 /* Atardecer: azul a naranja */
 .bg-sunset {
   background: linear-gradient(to bottom, #1e3a8a 0%, #60a5fa 40%, #fdba74 100%);
+}
+
+/* Nubes dispersas sobre bg-sunset: generadas por JS con posiciones aleatorias */
+.clouds-scattered {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  left: 0;
+  aspect-ratio: 1365 / 768;
+  background-image: url('/nube.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  animation: drift 60s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100vw); }
 }
 
 .nav-link {
@@ -465,7 +523,22 @@ a.badge {
 }
 
 @media screen and (min-width: 768px) {
-  .reviews-grid {
+.reviews-fade {
+  position: relative;
+}
+
+.reviews-fade::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, #111111);
+  pointer-events: none;
+}
+
+.reviews-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -525,6 +598,18 @@ a.badge {
   border-radius: var(--radius-md);
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.footer-image-fade {
+  border-radius: var(--radius-md);
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+  mask-composite: intersect;
 }
 
 @media screen and (max-height: 368px) {
