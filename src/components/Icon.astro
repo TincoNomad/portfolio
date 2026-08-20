@@ -24,7 +24,7 @@ const height = icon.height ?? 24;
   width={size}
   height={size}
   class={className}
+  fill="currentColor"
   aria-hidden="true"
->
-  {icon.body}
-</svg>
+  set:html={icon.body}
+/>

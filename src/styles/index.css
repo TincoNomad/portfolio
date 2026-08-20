@@ -84,7 +84,10 @@ ul {
 
 h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.8rem, 4.8vw, 3rem);
+  color: var(--color-cream);
+  -webkit-text-stroke: 10px var(--color-black);
+  paint-order: stroke fill;
   /*margin-top: 0.25em;*/
 }
 
@@ -92,55 +95,63 @@ h2 {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: normal;
-  color: #ffffff;
+  color: var(--color-cream);
+  -webkit-text-stroke: 10px var(--color-black);
+  paint-order: stroke fill;
 }
 
 h3 {
   font-family: var(--font-heading);
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   margin: 0;
+  color: var(--color-cream);
+}
+
+/* Excepción: los h3 dentro de burbujas (fondo crema) se mantienen oscuros */
+.bubble h3 {
+  color: var(--color-black);
 }
 
 /* Noche: negro con estrellas */
 .bg-stars {
   background-color: #111111;
   background-image:
-    radial-gradient(2px 2px at 20% 30%, white, transparent),
-    radial-gradient(1px 1px at 45% 15%, white, transparent),
-    radial-gradient(1px 1px at 72% 8%, white, transparent),
-    radial-gradient(2px 2px at 60% 70%, white, transparent),
-    radial-gradient(1px 1px at 38% 55%, white, transparent),
-    radial-gradient(1px 1px at 88% 42%, white, transparent),
-    radial-gradient(1px 1px at 50% 50%, white, transparent),
-    radial-gradient(2px 2px at 12% 65%, white, transparent),
-    radial-gradient(1px 1px at 67% 33%, white, transparent),
-    radial-gradient(1px 1px at 80% 10%, white, transparent),
-    radial-gradient(2px 2px at 25% 88%, white, transparent),
-    radial-gradient(1px 1px at 55% 77%, white, transparent),
-    radial-gradient(2px 2px at 90% 60%, white, transparent),
-    radial-gradient(1px 1px at 5% 45%, white, transparent),
-    radial-gradient(1px 1px at 42% 92%, white, transparent),
-    radial-gradient(1px 1px at 33% 80%, white, transparent),
-    radial-gradient(2px 2px at 78% 25%, white, transparent),
-    radial-gradient(1px 1px at 15% 12%, white, transparent),
-    radial-gradient(1px 1px at 15% 90%, white, transparent),
-    radial-gradient(2px 2px at 50% 5%, white, transparent),
-    radial-gradient(1px 1px at 92% 78%, white, transparent),
-    radial-gradient(2px 2px at 75% 40%, white, transparent),
-    radial-gradient(1px 1px at 30% 22%, white, transparent),
-    radial-gradient(1px 1px at 63% 85%, white, transparent),
-    radial-gradient(1px 1px at 45% 20%, white, transparent),
-    radial-gradient(2px 2px at 8% 35%, white, transparent),
-    radial-gradient(1px 1px at 97% 55%, white, transparent),
-    radial-gradient(1px 1px at 85% 85%, white, transparent),
-    radial-gradient(2px 2px at 40% 48%, white, transparent),
-    radial-gradient(1px 1px at 70% 95%, white, transparent),
-    radial-gradient(2px 2px at 10% 60%, white, transparent),
-    radial-gradient(1px 1px at 58% 38%, white, transparent),
-    radial-gradient(1px 1px at 22% 72%, white, transparent),
-    radial-gradient(1px 1px at 55% 95%, white, transparent),
-    radial-gradient(2px 2px at 83% 18%, white, transparent),
-    radial-gradient(1px 1px at 48% 62%, white, transparent);
+    radial-gradient(2px 2px at 20% 30%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 45% 15%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 72% 8%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 60% 70%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 38% 55%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 88% 42%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 50% 50%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 12% 65%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 67% 33%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 80% 10%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 25% 88%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 55% 77%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 90% 60%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 5% 45%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 42% 92%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 33% 80%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 78% 25%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 15% 12%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 15% 90%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 50% 5%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 92% 78%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 75% 40%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 30% 22%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 63% 85%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 45% 20%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 8% 35%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 97% 55%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 85% 85%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 40% 48%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 70% 95%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 10% 60%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 58% 38%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 22% 72%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 55% 95%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 83% 18%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 48% 62%, var(--color-cream), transparent);
   background-size: 100% 100%;
 }
 
@@ -177,7 +188,7 @@ h3 {
 .nav-link {
   font-family: var(--font-heading);
   font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: var(--color-black);
+  color: var(--color-cream);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -209,10 +220,10 @@ h3 {
 }
 
 .links a.button {
-  color: white;
+  color: var(--color-cream);
   background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 0 0 1px rgba(253, 246, 227, 0.12),
     inset 0 -2px 0 rgba(0, 0, 0, 0.24);
   border-radius: 10px;
 }
@@ -253,9 +264,9 @@ code {
 
 .box {
   padding: clamp(1rem, 2vw, 1.5rem);
-  background: rgba(255, 255, 255, 1);
+  background: var(--color-cream);
   border-radius: 16px;
-  border: 1px solid white;
+  border: 1px solid var(--color-cream);
 }
 
 .news {
@@ -269,7 +280,7 @@ code {
 }
 
 .news:hover {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(253, 246, 227, 0.55);
 }
 
 .label {
@@ -302,7 +313,7 @@ a.label:hover {
   font-size: clamp(0.75rem, 1.5vw, 0.8125rem);
   font-weight: 600;
   color: var(--color-black);
-  background: var(--color-cream);
+  background: var(--color-orange);
   letter-spacing: 0.3px;
   text-decoration: none;
   cursor: pointer;
@@ -312,6 +323,12 @@ a.label:hover {
 .badge:hover {
   background: var(--color-accent);
   color: var(--color-black);
+}
+
+/* Instagram es un outline fino; el stroke lo engrosa ~2x */
+.badge.instagram svg {
+  stroke: currentColor;
+  stroke-width: 2;
 }
 
 a.badge {
@@ -621,18 +638,18 @@ a.badge {
 .starry-bg {
   background-color: var(--color-black);
   background-image:
-    radial-gradient(2px 2px at 20% 30%, white, transparent),
-    radial-gradient(2px 2px at 60% 70%, white, transparent),
-    radial-gradient(1px 1px at 50% 50%, white, transparent),
-    radial-gradient(1px 1px at 80% 10%, white, transparent),
-    radial-gradient(2px 2px at 90% 60%, white, transparent),
-    radial-gradient(1px 1px at 33% 80%, white, transparent),
-    radial-gradient(1px 1px at 15% 90%, white, transparent),
-    radial-gradient(2px 2px at 75% 40%, white, transparent),
-    radial-gradient(1px 1px at 45% 20%, white, transparent),
-    radial-gradient(1px 1px at 85% 85%, white, transparent),
-    radial-gradient(2px 2px at 10% 60%, white, transparent),
-    radial-gradient(1px 1px at 55% 95%, white, transparent);
+    radial-gradient(2px 2px at 20% 30%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 60% 70%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 50% 50%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 80% 10%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 90% 60%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 33% 80%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 15% 90%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 75% 40%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 45% 20%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 85% 85%, var(--color-cream), transparent),
+    radial-gradient(2px 2px at 10% 60%, var(--color-cream), transparent),
+    radial-gradient(1px 1px at 55% 95%, var(--color-cream), transparent);
   background-size: 100% 100%;
 }
 

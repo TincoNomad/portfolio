@@ -11,6 +11,6 @@ interface Props {
 const { name, url, size = 20, class: className } = Astro.props;
 ---
 
-<a href={url} class={`inline-flex ${className ?? ''}`.trim()} target="_blank" rel="noopener noreferrer">
+<a href={url} class={`inline-flex items-center ${className ?? ''}`.trim()} target="_blank" rel="noopener noreferrer" aria-label={name}>
   <Icon name={name} size={size} />
 </a>

@@ -1,26 +1,31 @@
 ---
+import SocialIcon from './SocialIcon.astro';
 ---
 
 <section class='section-full min-h-screen scroll-mt-20 bg-[url("/fondo_hero.webp")] bg-no-repeat bg-center bg-[length:95%_auto]' id='home'> 
     <div class='section-inner flex h-30% mb-30 gap-4'>
-        <div class='flex flex-col items-center justify-between gap-4'> 
-            <img src='/mi-gif.gif' alt='Descripción' class='rounded-lg mb-4 h-80 w-80'>
+        <div class='flex flex-col items-center justify-between gap-4 w-1/3'> 
+            <img src='/mi-gif.gif' alt='Descripción' class='rounded-lg w-80 aspect-square object-cover'>
             <div>
-                <h2 class="!text-2xl">
-                    <span class='block'>🛠️ software blacksmith</span>
-                    <span class='block'>🦀 rust backend engineer</span>
-                    <span class='block'>🌐 decentralized systems</span>
-                    <span class='block'>🌱 community-driven tech</span>
+                <h2 class="!text-[1.95rem]">
+                    <span class='block'>rust developer</span>
+                    <span class='block'>open source</span>
+                    <span class='block'>decentralization</span>
+                    <span class='block'>community-driven</span>
                 </h2>
-                <div class='flex gap-4 mt-2'>
-                    <a class='badge' href='https://github.com/tinconomad' target='_blank' rel='noopener noreferrer'>github</a>
-                    <a class='badge' href='#' target='_blank' rel='noopener noreferrer'>linkedin</a>
-                    <a class='badge' href='#'>email</a>
+                <div class='flex flex-wrap gap-4 mt-2'>
+                    <SocialIcon name='github' url='https://github.com/tinconomad' class='badge' size={20} />
+                    <SocialIcon name='linkedin' url='#' class='badge' size={20} />
+                    <SocialIcon name='instagram' url='#' class='badge instagram' size={20} />
+                    <SocialIcon name='mastodon' url='#' class='badge' size={20} />
+                    <SocialIcon name='twitter' url='#' class='badge' size={20} />
+                    <SocialIcon name='tiktok' url='#' class='badge' size={20} /> 
                 </div>                
             </div>
         </div>
-        <div class='flex flex-col justify-between items-center'>
-            <h1 class="text-white">Renzo Tincopa</h1>
+        <div class='flex flex-col justify-between items-center w-2/3'>
+            <h1>Renzo Tincopa</h1>
+            <h2> Backend Blacksmith/AI Automations</h2>
             <div>
                 <h3 class="bubble !text-lg relative z-10 ">Custom systems for your business. From payment automation to distributed infrastructure — 
                     I build backends that scale, don't break, and align with your values.</h3>
