@@ -2,16 +2,16 @@
 import SocialIcon from './SocialIcon.astro';
 ---
 
-<section class='section-full min-h-screen scroll-mt-20 bg-[url("/fondo_hero.webp")] bg-no-repeat bg-center bg-[length:95%_auto]' id='home'> 
-    <div class='section-inner flex h-30% mb-30 gap-4'>
+<section class='min-h-screen scroll-mt-20' id='home'>
+    <div class='flex w-full h-30% mb-30 gap-4'>
         <div class='flex flex-col items-center justify-between gap-4 w-1/3'> 
             <img src='/mi-gif.gif' alt='Descripción' class='rounded-lg w-80 aspect-square object-cover'>
             <div>
-                <h2 class="!text-[1.95rem]">
-                    <span class='block'>rust developer</span>
-                    <span class='block'>open source</span>
-                    <span class='block'>decentralization</span>
-                    <span class='block'>community-driven</span>
+                <h2 class="!text-base">
+                    <span class='block'>#rust</span>
+                    <span class='block'>#opensource</span>
+                    <span class='block'>#decentralization</span>
+                    <span class='block'>#communitydriven</span>
                 </h2>
                 <div class='flex flex-wrap gap-4 mt-2'>
                     <SocialIcon name='github' url='https://github.com/tinconomad' class='badge' size={20} />
@@ -27,9 +27,13 @@ import SocialIcon from './SocialIcon.astro';
             <h1>Renzo Tincopa</h1>
             <h2> Backend Blacksmith/AI Automations</h2>
             <div>
-                <h3 class="bubble !text-lg relative z-10 ">Custom systems for your business. From payment automation to distributed infrastructure — 
-                    I build backends that scale, don't break, and align with your values.</h3>
-                <img id='cottage' src="/cabana_pixel.png" alt="" > 
+                <div class="flex justify-end">
+                    <h3 class="bubble !text-lg relative z-10 text-end">You tell me what you're trying to achieve.<br/>I design the system and build it</h3>
+                </div>
+                <div class='relative'>
+                    <img id='cottage' src="/cabana_pixel.png" alt="" class='relative z-10'>
+                    <img id='arbol' src="/arbol_hero.webp" alt="" aria-hidden="true" class='w-[120%] max-w-none -ml-[10%] -mt-[45%]'>
+                </div>
             </div>
         </div>
     </div>
