@@ -89,12 +89,6 @@ h3 {
   color: var(--color-cream);
 }
 
-/* Hero: contenido anclado arriba en vez de centrado verticalmente */
-#home {
-  justify-content: flex-start;
-  padding-top: 3rem;
-}
-
 /* Hero: nombre y título al 150% del tamaño base */
 #home h1 {
   font-size: clamp(2.7rem, 7.2vw, 4.5rem);
