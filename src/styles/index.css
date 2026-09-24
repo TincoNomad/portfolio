@@ -23,8 +23,9 @@ main {
 header {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 0.625rem 1.25rem;
+  align-self: stretch;
+  margin-inline: clamp(0.5rem, 2vw, 1rem);
+  padding: 0.625rem clamp(1rem, 2.5vw, 1.5rem);
   border-radius: 0 0 var(--radius-md) var(--radius-md);
   position: sticky;
   top: 0;
@@ -372,6 +373,8 @@ a.badge {
 
 .btn-wrap .face {
   position: relative;
+  display: inline-block;
+  text-decoration: none;
   font-family: var(--font-heading);
   background: var(--color-orange);
   background-image: var(--dot-lg);
@@ -520,27 +523,6 @@ a.badge {
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
-.reviews-fade {
-  position: relative;
-}
-
-.reviews-fade::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(to bottom, transparent, #111111);
-  pointer-events: none;
-}
-
-.reviews-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 .review-bubble {
   display: flex;
   flex-direction: column;
@@ -610,12 +592,6 @@ a.badge {
   mask-composite: intersect;
 }
 
-@media screen and (max-height: 368px) {
-  .news {
-    display: none;
-  }
-}
-
 .starry-bg {
   background-color: var(--color-black);
   background-image:
@@ -632,46 +608,4 @@ a.badge {
     radial-gradient(2px 2px at 10% 60%, var(--color-cream), transparent),
     radial-gradient(1px 1px at 55% 95%, var(--color-cream), transparent);
   background-size: 100% 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .hero {
-    display: block;
-    padding-top: 10%;
-  }
-
-  .hero-content {
-    flex-direction: column;
-  }
-
-  .hero-image {
-    width: clamp(120px, 40vw, 200px);
-  }
-
-  .project-bubble {
-    flex-direction: column;
-  }
-
-  .project-image {
-    width: 100%;
-  }
-
-  .links {
-    flex-wrap: wrap;
-  }
-
-  .links a.button {
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem);
-  }
-
-  .news {
-    right: 1rem;
-    left: 1rem;
-    bottom: 2.5rem;
-    max-width: 100%;
-  }
-
-  h1 {
-    line-height: 1.5;
-  }
 }
