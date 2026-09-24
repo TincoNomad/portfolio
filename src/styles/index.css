@@ -89,6 +89,30 @@ h3 {
   color: var(--color-cream);
 }
 
+/* Hero: contenido anclado arriba en vez de centrado verticalmente */
+#home {
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+/* Hero: nombre y título al 150% del tamaño base */
+#home h1 {
+  font-size: clamp(2.7rem, 7.2vw, 4.5rem);
+}
+
+#home h1 + h2 {
+  font-size: clamp(1.875rem, 4.5vw, 3rem);
+}
+
+/* Etiqueta del strip "What I build": look de heading, tamaño acorde a la fila de chips */
+.hero-label {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--color-cream);
+  -webkit-text-stroke: 10px var(--color-black);
+  paint-order: stroke fill;
+}
+
 /* Excepción: los h3 dentro de burbujas (fondo crema) se mantienen oscuros */
 .bubble h3 {
   color: var(--color-black);
@@ -355,6 +379,22 @@ a.badge {
   background: var(--color-accent);
 }
 
+/* Chips del hero: más grandes y gruesos que los tags de proyectos */
+#home .tag {
+  font-size: clamp(0.9375rem, 1.8vw, 1rem);
+  font-weight: 700;
+  padding: clamp(0.25rem, 0.75vw, 0.5rem) clamp(0.625rem, 1.5vw, 1rem);
+}
+
+/* Bubble del hero: padding a la mitad, texto -20%, grosor doble, ancho -30% */
+#home .bubble {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem);
+  font-size: clamp(0.84rem, 1.92vw, 0.96rem);
+  font-weight: 800;
+  max-width: clamp(177px, 25.3vw, 303px);
+  margin-inline-end: 3.75rem;
+}
+
 .btn-wrap {
   position: relative;
   display: inline-block;
@@ -437,26 +477,72 @@ a.badge {
   align-items: flex-start;
 }
 
+/* Un heading con .bubble se ve como burbuja: sin stroke ni fuente de heading */
+h2.bubble {
+  font-family: var(--font-body);
+  -webkit-text-stroke: 0;
+  paint-order: normal;
+}
+
 .bubble::before,
 .bubble::after {
   content: "";
   position: absolute;
   width: 0;
   height: 0;
-  border-left: 14px solid transparent;
 }
 
 .bubble::before {
-  left: 28px;
+  left: var(--tail-x, 28px);
+  right: var(--tail-x-r, auto);
   bottom: -26px;
+  border-left: var(--tail-b-l, 14px) solid transparent;
+  border-right: var(--tail-b-r, 0) solid transparent;
   border-top: 30px solid var(--color-black);
 }
 
 .bubble::after {
-  left: 31px;
+  left: var(--tail-a-x, 31px);
+  right: var(--tail-a-x-r, auto);
   bottom: -20px;
-  border-left: 11px solid transparent;
+  border-left: var(--tail-a-l, 11px) solid transparent;
+  border-right: var(--tail-a-r, 0) solid transparent;
   border-top: 25px solid var(--color-cream);
+}
+
+/* Variantes de la cola de la bubble */
+
+/* Cola a la derecha, sombra a la izquierda (solo mueve, no espeja) */
+.bubble-tail-right {
+  --tail-x: auto;
+  --tail-x-r: 28px;
+  --tail-a-x: auto;
+  --tail-a-x-r: 28px;
+}
+
+/* Sombra hacia la derecha (espeja la diagonal, con cola a la izquierda o derecha) */
+.bubble-shadow-right {
+  --tail-b-l: 0;
+  --tail-b-r: 14px;
+  --tail-a-l: 0;
+  --tail-a-r: 11px;
+  --tail-a-x: 28px;
+}
+
+.bubble-tail-right.bubble-shadow-right {
+  --tail-a-x-r: 31px;
+}
+
+/* Espejo completo: cola a la derecha + sombra espejada */
+.bubble-tail-mirror {
+  --tail-x: auto;
+  --tail-x-r: 28px;
+  --tail-b-l: 0;
+  --tail-b-r: 14px;
+  --tail-a-x: auto;
+  --tail-a-x-r: 31px;
+  --tail-a-l: 0;
+  --tail-a-r: 11px;
 }
 
 .bubble-wrap {
