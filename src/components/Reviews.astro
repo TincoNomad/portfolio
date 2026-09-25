@@ -24,10 +24,8 @@ const REVIEWS = [
 ---
 
 <section class='h-screen bg-[url("/fondo_reviews.webp")] bg-no-repeat bg-cover reviews-fade !flex !justify-start'>
-    <div class='w-full'>
-        <div class='w-full'>
-            <h2 class='has-dots items-start mb-0'>Reviews</h2>
-        </div>
+    <div class='w-[70%] mx-auto'>
+        <h2 class='has-dots items-start mb-0 w-fit'>Reviews</h2>
         <div class='reviews-grid'>
             {REVIEWS.map(review => (
                 <ReviewsItem {...review} />

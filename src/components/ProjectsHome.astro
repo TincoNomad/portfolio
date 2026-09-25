@@ -34,16 +34,16 @@ const FEATURED_PROJECTS = [
 ---
 
 <section id='projects' class='scroll-mt-30'>
-  <div class='w-full'>
-    <h2 class='has-dots items-start'>Projects</h2>
-  </div>
-  <div class='projects-grid'>
-    {FEATURED_PROJECTS.map(project => (
-      <ProjectsItem {...project} />
-    ))}
-  </div>
-  <div class='flex-col my-4 relative'>
-      <p class='bubble relative z-10'>You can see more of my work in my github or in Wiracochalab.com</p>
-      <img src="/projects.webp" alt="Renzo Tincopa" class='hero-image relative z-0 -mt-[10px]'>
+  <div class='w-[70%] mx-auto'>
+    <h2 class='has-dots items-start w-fit'>Projects</h2>
+    <div class='projects-grid'>
+      {FEATURED_PROJECTS.map(project => (
+        <ProjectsItem {...project} />
+      ))}
+    </div>
+    <div class='flex-col my-4 relative'>
+        <p class='bubble relative z-10'>You can see more of my work in my github or in Wiracochalab.com</p>
+        <img src="/projects.webp" alt="Renzo Tincopa" class='hero-image relative z-0 -mt-[10px]'>
+    </div>
   </div>
 </section>

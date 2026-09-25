@@ -17,6 +17,10 @@
   .reviews-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-height: 368px) {
@@ -26,14 +30,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .project-bubble {
-    flex-direction: column;
-  }
-
-  .project-image {
-    width: 100%;
-  }
-
   .links {
     flex-wrap: wrap;
   }

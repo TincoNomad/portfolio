@@ -465,10 +465,17 @@ a.badge {
 
 .project-bubble {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: clamp(1rem, 3vw, 1.5rem);
   max-width: 100%;
-  align-items: flex-start;
+}
+
+/* Cola a la derecha en las tarjetas de la columna derecha */
+.projects-grid .project-bubble:nth-child(even) {
+  --tail-x: auto;
+  --tail-x-r: 28px;
+  --tail-a-x: auto;
+  --tail-a-x-r: 28px;
 }
 
 /* Un heading con .bubble se ve como burbuja: sin stroke ni fuente de heading */
@@ -588,8 +595,8 @@ h2.bubble {
 }
 
 .projects-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: clamp(1rem, 3vw, 2rem);
   margin-top: clamp(1rem, 3vw, 2rem);
   width: 100%;
@@ -637,8 +644,9 @@ h2.bubble {
 }
 
 .project-image {
-  width: 40%;
-  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
   display: block;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
