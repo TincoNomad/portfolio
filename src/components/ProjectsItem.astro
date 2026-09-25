@@ -11,7 +11,7 @@ image: string;
 const {title, description, tags, link, github, image} = Astro.props;
 ---
 
-<article class="bubble project-bubble" data-tags={tags.join(',')}>
+<article class="bubble bubble-tail-right project-bubble" data-tags={tags.join(',')}>
   <img src={image} alt={`Screenshot of ${title}`} class="project-image">
   <div class="project-content">
     <h3>{title}</h3>

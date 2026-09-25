@@ -41,9 +41,15 @@ const FEATURED_PROJECTS = [
         <ProjectsItem {...project} />
       ))}
     </div>
-    <div class='flex-col my-4 relative'>
-        <p class='bubble relative z-10'>You can see more of my work in my github or in Wiracochalab.com</p>
-        <img src="/projects.webp" alt="Renzo Tincopa" class='hero-image relative z-0 -mt-[10px]'>
+    <div class='flex flex-col items-end my-4 relative'>
+        <p class='bubble bubble-tail-right relative z-10'>You can see more of my work in my <a class='badge' href='https://github.com/TincoNomad' target='blank'>GitHub</a> or in <a class='badge' href='https://github.com/wiracocha-labs' target='blank'>Wiracocha Labs</a></p>
+        <img src="/projects.webp" alt="Renzo Tincopa" class='hero-image relative z-0 -mt-[10px] me-4'>
+    </div>
+    <div class='flex justify-center my-4'>
+        <div class='btn-wrap'>
+            <div class='shadow'></div>
+            <a class='face text-[clamp(2rem,5vw,3rem)]! px-[clamp(0.625rem,1.875vw,0.9375rem)]! py-[clamp(0.3125rem,1vw,0.46875rem)]!' href='#'>Let's build together</a>
+        </div>
     </div>
   </div>
 </section>

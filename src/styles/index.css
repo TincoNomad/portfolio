@@ -599,6 +599,7 @@ h2.bubble {
   grid-template-columns: 1fr;
   gap: clamp(1rem, 3vw, 2rem);
   margin-top: clamp(1rem, 3vw, 2rem);
+  margin-bottom: clamp(1rem, 3vw, 2rem);
   width: 100%;
 }
 
