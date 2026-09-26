@@ -29,7 +29,7 @@ const REVIEWS = [
 ];
 ---
 
-<section class='h-screen reviews-scene reviews-fade !flex !justify-start'>
+<section id='reviews' class='h-screen reviews-scene reviews-fade !flex !justify-start'>
     <div class='w-[70%] mx-auto'>
         <h2 class='has-dots items-start mb-0 w-fit'>Reviews</h2>
         <div class='reviews-carousel'>
@@ -56,73 +56,66 @@ const REVIEWS = [
   const nextBtn = document.querySelector<HTMLButtonElement>('.carousel-btn.next');
 
   if (track) {
-    // Duplicar tarjetas para el loop infinito
+    // Loop infinito: clona sets de tarjetas hasta cubrir viewport + una vuelta
     const originals = [...track.children];
     const count = originals.length;
-    const cloneSet = () => {
+    const cloneSet = () =>
       originals.forEach((el) => {
         const clone = el.cloneNode(true) as HTMLElement;
         clone.setAttribute('aria-hidden', 'true');
         clone.querySelectorAll('a').forEach((a) => (a.tabIndex = -1));
         track.appendChild(clone);
       });
-    };
-    cloneSet();
 
-    // Ancho de una vuelta = posición donde empieza la copia
-    const loopWidth = () => {
-      const first = track.children[0] as HTMLElement | undefined;
+    let lw = 0; // ancho de una vuelta
+    const measure = () => {
       const copy = track.children[count] as HTMLElement | undefined;
-      return first && copy ? copy.offsetLeft - first.offsetLeft : 0;
+      lw = copy ? copy.offsetLeft - (track.children[0] as HTMLElement).offsetLeft : 0;
     };
 
-    // Más copias si el viewport es más ancho que una vuelta
-    const viewport = track.parentElement;
-    let guard = 0;
-    while (
-      viewport &&
-      (track.children.length / count) * loopWidth() < viewport.clientWidth + loopWidth() &&
-      guard++ < 4
-    ) {
+    const viewport = track.parentElement as HTMLElement;
+    do {
       cloneSet();
-    }
+      measure();
+    } while (
+      lw > 0 &&
+      track.children.length < count * 5 &&
+      (track.children.length / count - 1) * lw < viewport.clientWidth
+    );
+    window.addEventListener('resize', measure);
 
-    // El carrusel se mueve por transform, no por scroll
     let pos = 0;
-    const wrap = () => {
-      const lw = loopWidth();
-      if (lw) pos = ((pos % lw) + lw) % lw;
-    };
     const apply = () => {
-      wrap();
-      track.style.transform = `translate3d(${-pos}px, 0, 0)`;
+      if (lw) pos = ((pos % lw) + lw) % lw;
+      track.style.transform = `translateX(${-pos}px)`;
     };
 
-    const step = () => {
-      const card = track.querySelector<HTMLElement>('article');
-      const gap = parseFloat(getComputedStyle(track).gap) || 0;
-      return card ? card.offsetWidth + gap : track.clientWidth;
-    };
+    const step = () =>
+      (track.children[0] as HTMLElement).offsetWidth +
+      (parseFloat(getComputedStyle(track).gap) || 0);
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Los botones acumulan distancia que el tick anima con easing
     let tween = 0;
     const nudge = (dir: number) => {
+      tween += dir * step();
       if (reduced) {
-        pos += dir * step();
+        pos += tween;
+        tween = 0;
         apply();
-      } else {
-        tween += dir * step();
       }
     };
     prevBtn?.addEventListener('click', () => nudge(-1));
     nextBtn?.addEventListener('click', () => nudge(1));
 
-    // Arrastre manual (mouse/touch)
+    let paused = false;
     let dragging = false;
     let startX = 0;
     let startPos = 0;
+
+    track.addEventListener('pointerenter', () => (paused = true));
+    track.addEventListener('pointerleave', () => (paused = false));
     track.addEventListener('pointerdown', (e) => {
       dragging = true;
       tween = 0;
@@ -135,23 +128,17 @@ const REVIEWS = [
       pos = startPos - (e.clientX - startX);
       apply();
     });
-    const endDrag = () => (dragging = false);
-    track.addEventListener('pointerup', endDrag);
-    track.addEventListener('pointercancel', endDrag);
-
-    // Pausa el auto-scroll al pasar el cursor
-    let paused = false;
-    track.addEventListener('pointerenter', () => (paused = true));
-    track.addEventListener('pointerleave', () => (paused = false));
+    ['pointerup', 'pointercancel'].forEach((ev) =>
+      track.addEventListener(ev, () => (dragging = false)),
+    );
 
     if (!reduced) {
-      const SPEED = 0.4; // px por frame (~24px/s)
+      const SPEED = 0.4;
       const tick = () => {
         if (!paused && !dragging) {
           if (Math.abs(tween) > 0.5) {
-            const d = tween * 0.14;
-            pos += d;
-            tween -= d;
+            pos += tween * 0.14;
+            tween *= 0.86;
           } else {
             pos += tween + SPEED;
             tween = 0;

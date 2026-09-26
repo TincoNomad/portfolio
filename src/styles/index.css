@@ -603,9 +603,7 @@ h2.bubble {
   width: 100%;
 }
 
-/* La escena pixel-art se pinta POR ENCIMA del contenido: el cielo es
-   transparente, así que las tarjetas se ven a través de él y pasan
-   "detrás" de los árboles/montañas */
+/* La escena se pinta sobre el contenido: el cielo transparente deja ver las tarjetas */
 .reviews-scene {
   position: relative;
 }
@@ -632,7 +630,6 @@ h2.bubble {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
-/* Tira de tarjetas: se desplaza con translateX (el loop lo controla JS) */
 .reviews-track {
   display: flex;
   gap: clamp(0.5rem, 1.5vw, 1rem);
