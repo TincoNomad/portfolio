@@ -10,7 +10,7 @@ import logo from '../../public/logo.png'
         </div>
         <div class="btn-wrap">
             <div class="shadow"></div>
-            <button class="face" type="button">Let's build together</button>
+            <button class="face" type="button" data-contact>Let's build together</button>
         </div>
     </div>
     <nav class='flex items-center'>
@@ -20,7 +20,15 @@ import logo from '../../public/logo.png'
             <li><a class='nav-link' href="#about">About me</a></li>
             <li><a class='nav-link' href="#blog">Blog</a></li>
             <li><a class='nav-link' href="#reviews">Reviews</a></li>
-        </ul>              
+        </ul>
+        <div class='flex gap-2 ml-4'>
+            <button class='lang-btn' type='button' data-lang='es' aria-label='Versión en español' aria-pressed='false'>
+                <img src='/es.webp' alt='Español'>
+            </button>
+            <button class='lang-btn' type='button' data-lang='en' aria-label='English version' aria-pressed='true'>
+                <img src='/eng.webp' alt='English'>
+            </button>
+        </div>
     </nav>
 </header>
 

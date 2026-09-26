@@ -1,0 +1,324 @@
+---
+const PRIORITIES = ['Good', 'Fast', 'Cheap'];
+---
+
+<dialog id='contact-modal' class='contact-modal bubble-shadow-right'>
+    <button type='button' class='contact-close' aria-label='Close' data-contact-close>×</button>
+
+    <div class='contact-body'>
+    <form class='contact-form'>
+        <h2 class='ps-2 has-dots'>Let's build together</h2>
+        <p>Tell me what you want to build. Two paths:</p>
+        <p>A Telegram message — we set up a 30-minute call:</p>
+        <div class='btn-wrap'>
+            <div class='shadow'></div>
+            <a class='face' href='https://t.me/tinconomad' target='_blank' rel='noopener noreferrer'>Message me on Telegram</a>
+        </div>
+        <p>Or send me an email — fill this out and I'll reply with scope + quote:</p>
+        <label>
+            Name
+            <input type='text' name='name' required autocomplete='name' />
+        </label>
+        <label>
+            Email or Telegram
+            <input type='text' name='contact' required />
+        </label>
+        <div class='form-row'>
+            <label>
+                Project type
+                <select name='type'>
+                    <option value='backend'>Backend / API</option>
+                    <option value='automation'>Automation / AI</option>
+                    <option value='payments'>Payments / Web3</option>
+                    <option value='other'>Other</option>
+                </select>
+            </label>
+            <label>
+                Estimated budget
+                <select name='budget'>
+                    <option value='<1k'>Less than $1k</option>
+                    <option value='1-5k'>$1k – $5k</option>
+                    <option value='5-15k'>$5k – $15k</option>
+                    <option value='15k+'>More than $15k</option>
+                    <option value='unsure'>Not sure yet</option>
+                </select>
+            </label>
+        </div>
+        <div class='prioridades-row'>
+            <span>Priorities</span>
+            <fieldset class='pick-two' aria-label='Priorities — pick two'>
+                {PRIORITIES.map((v) => (
+                    <label class='switch'>
+                        <input type='checkbox' name='prio' value={v} />
+                        <span class='track'><span class='knob'></span></span>
+                        {v}
+                    </label>
+                ))}
+            </fieldset>
+        </div>
+        <label>
+            What do you want to achieve?
+            <textarea name='message' rows='4' required placeholder='Describe your project, problem, or idea...'></textarea>
+        </label>
+        <div class='btn-wrap'>
+            <div class='shadow'></div>
+            <button type='submit' class='face'>Send by email</button>
+        </div>
+    </form>
+    </div>
+    <img class='modal-art' src='/modal.webp' alt='Taking notes on your project' />
+</dialog>
+
+<style>
+  .contact-modal {
+    --art-drop: 175px;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    transform: translateY(calc(var(--art-drop) / -2));
+    max-height: 72vh;
+    width: min(90vw, 480px);
+    padding: clamp(0.33rem, 1vw, 0.67rem);
+    background: var(--color-cream);
+    border: 3px solid var(--color-black);
+    border-radius: var(--radius-lg);
+    overflow: visible;
+  }
+
+  .contact-modal[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Cola de bubble: mismas vars que .bubble en index.css */
+  .contact-modal::before,
+  .contact-modal::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .contact-modal::before {
+    left: var(--tail-x, 28px);
+    right: var(--tail-x-r, auto);
+    bottom: -26px;
+    border-left: var(--tail-b-l, 14px) solid transparent;
+    border-right: var(--tail-b-r, 0) solid transparent;
+    border-top: 30px solid var(--color-black);
+  }
+
+  .contact-modal::after {
+    left: var(--tail-a-x, 31px);
+    right: var(--tail-a-x-r, auto);
+    bottom: -20px;
+    border-left: var(--tail-a-l, 11px) solid transparent;
+    border-right: var(--tail-a-r, 0) solid transparent;
+    border-top: 25px solid var(--color-cream);
+  }
+
+  .contact-body {
+    flex: 1;
+    min-height: 0;
+    margin-top: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: clamp(0.67rem, 2vw, 1.33rem);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-orange) transparent;
+  }
+
+  .contact-body::-webkit-scrollbar {
+    width: 0.625rem;
+  }
+
+  .contact-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .contact-body::-webkit-scrollbar-thumb {
+    background: var(--color-orange);
+    border: 2px solid var(--color-black);
+    border-radius: 999px;
+  }
+
+  .contact-modal::backdrop {
+    background: rgba(17, 17, 17, 0.55);
+    backdrop-filter: blur(3px);
+  }
+
+  .contact-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-black);
+    cursor: pointer;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-form .btn-wrap {
+    align-self: flex-start;
+  }
+
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    border: var(--border-w) solid var(--color-black);
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-body);
+    color: var(--color-black);
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .form-row > * {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .prioridades-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .pick-two {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border: var(--border-w) solid var(--color-black);
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    padding: 0.75rem;
+    margin: 0;
+  }
+
+  .switch {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .track {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    border: var(--border-w) solid var(--color-black);
+    border-radius: 999px;
+    background: #dc2626;
+    transition: background 0.25s;
+    flex-shrink: 0;
+  }
+
+  .knob {
+    position: absolute;
+    top: 0.125rem;
+    left: 0.125rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    border: 2px solid var(--color-black);
+    border-radius: 50%;
+    background: var(--color-cream);
+    transition: transform 0.25s;
+  }
+
+  .switch input:checked + .track {
+    background: #16a34a;
+  }
+
+  .switch input:checked + .track .knob {
+    transform: translateX(1.25rem);
+  }
+
+  .switch input:focus-visible + .track {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
+
+  .modal-art {
+    position: absolute;
+    bottom: calc(var(--art-drop) * -1);
+    left: -90px;
+    width: 180px;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const CONTACT_EMAIL = 'renzotincopa@icloud.com';
+
+  const modal = document.querySelector<HTMLDialogElement>('#contact-modal');
+  modal?.addEventListener('click', (e) => {
+    if (!modal) return;
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-contact-close]')) return modal.close();
+    const r = modal.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+      modal.close();
+    }
+  });
+
+  const switches = [...(modal?.querySelectorAll<HTMLInputElement>('.switch input') ?? [])];
+  let queue: HTMLInputElement[] = [];
+  switches.forEach((sw) =>
+    sw.addEventListener('change', () => {
+      if (sw.checked) {
+        queue.push(sw);
+        if (queue.length > 2) queue.shift()!.checked = false;
+      } else {
+        queue = queue.filter((s) => s !== sw);
+      }
+    }),
+  );
+
+  const form = modal?.querySelector<HTMLFormElement>('.contact-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const body = [
+      `Name: ${data.get('name')}`,
+      `Contact: ${data.get('contact')}`,
+      `Type: ${data.get('type')}`,
+      `Budget: ${data.get('budget')}`,
+      `Priorities: ${data.getAll('prio').join(' + ') || '-'}`,
+      '',
+      `${data.get('message')}`,
+    ].join('\n');
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      `New quote — ${data.get('name')}`,
+    )}&body=${encodeURIComponent(body)}`;
+  });
+</script>

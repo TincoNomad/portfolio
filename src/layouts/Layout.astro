@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import ContactModal from '../components/ContactModal.astro'
 import '../styles/index.css'
 import '../styles/responsive.css'
 
@@ -44,6 +45,17 @@ const personSchema = JSON.stringify({
             <!--/div-->
                 <slot />
             <Footer />
+            <ContactModal />
 		</main>
 	</body>
 </html>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const trigger = (e.target as HTMLElement | null)?.closest('[data-contact]');
+    if (!trigger) return;
+    e.preventDefault();
+    const modal = document.querySelector<HTMLDialogElement>('#contact-modal');
+    if (modal && !modal.open) modal.showModal();
+  });
+</script>

@@ -196,6 +196,33 @@ h3 {
   color: var(--color-orange);
 }
 
+.lang-btn {
+  padding: 0;
+  border: var(--border-w) solid var(--color-black);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  box-shadow: 2.5px 2.5px 0 var(--color-black);
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+}
+.lang-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1.5px 1.5px 0 var(--color-black);
+}
+.lang-btn:active,
+.lang-btn[aria-pressed='true'] {
+  transform: translate(2.5px, 2.5px);
+  box-shadow: none;
+}
+.lang-btn img {
+  display: block;
+  height: 1.4rem;
+  width: auto;
+}
+
 .links {
   display: flex;
   gap: clamp(0.75rem, 2vw, 1.5rem);
@@ -601,6 +628,10 @@ h2.bubble {
   margin-top: clamp(1rem, 3vw, 2rem);
   margin-bottom: clamp(1rem, 3vw, 2rem);
   width: 100%;
+}
+
+html:has(.contact-modal[open]) {
+  overflow: hidden;
 }
 
 /* La escena se pinta sobre el contenido: el cielo transparente deja ver las tarjetas */
