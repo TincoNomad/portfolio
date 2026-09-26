@@ -1,4 +1,6 @@
-
+---
+import SocialIcon from './SocialIcon.astro';
+---
 
 <footer class="w-full bg-black text-(--color-cream)">
     <div class="w-[70%] mx-auto py-4 md:py-8">
@@ -6,20 +8,30 @@
             <div class="footer-image-fade">
               <img src='/yo_fogata.png' alt='Renzo Tincopa' class='hero-image aspect-square object-cover'>
             </div>
-            <ul class='gap-16'>
-                <li>
-                    <a href="#" class="text-(--color-cream) hover:underline">About</a>
-                </li>
-                <li>
-                    <a href="#" class="text-(--color-cream) hover:underline">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#" class="text-(--color-cream) hover:underline">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" class="text-(--color-cream) hover:underline">Contact</a>
-                </li>
-            </ul>
+            <div class="flex flex-col gap-4 sm:items-end">
+                <ul class='gap-16'>
+                    <li>
+                        <a href="#" class="text-(--color-cream) hover:underline">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-(--color-cream) hover:underline">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-(--color-cream) hover:underline">Licensing</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-(--color-cream) hover:underline">Contact</a>
+                    </li>
+                </ul>
+                <ul class='gap-4'>
+                    <li><SocialIcon name='github' url='https://github.com/TincoNomad' class='badge' size={20} /></li>
+                    <li><SocialIcon name='linkedin' url='https://www.linkedin.com/in/tinconomad/' class='badge' size={20} /></li>
+                    <li><SocialIcon name='instagram' url='https://www.instagram.com/tinconomad/' class='badge instagram' size={20} /></li>
+                    <li><SocialIcon name='bluesky' url='https://bsky.app/profile/wiracocha-labs.bsky.social' class='badge' size={20} /></li>
+                    <li><SocialIcon name='mastodon' url='https://mastodon.social/@TincoNomad' class='badge' size={20} /></li>
+                    <li><SocialIcon name='tiktok' url='https://www.tiktok.com/@tinconomad' class='badge' size={20} /></li>
+                </ul>
+            </div>
         </div>
         <hr class="my-6 border-default sm:mx-auto lg:my-8" />
         <span class="block text-sm text-body sm:text-center">© 2026 <a href="https://flowbite.com/" class="hover:underline">Renzo Tincopa</a>. Done with love from Inka's sacret valley, Urumaba, Cusco. Peru 🇵🇪.</span>
