@@ -435,6 +435,7 @@ a.badge {
 .btn-wrap .face {
   position: relative;
   display: inline-block;
+  cursor: pointer;
   text-decoration: none;
   font-family: var(--font-heading);
   background: var(--color-orange);
