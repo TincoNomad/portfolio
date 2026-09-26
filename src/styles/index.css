@@ -601,7 +601,7 @@ html:has(.contact-modal[open]) {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/fondo_reviews.webp') no-repeat center / cover;
+  background: url('/fondo_reviews.webp') no-repeat bottom / 100% auto;
   pointer-events: none;
   z-index: 2;
 }
