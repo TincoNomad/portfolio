@@ -603,12 +603,86 @@ h2.bubble {
   width: 100%;
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(0.5rem, 1.5vw, 1rem);
-  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+/* La escena pixel-art se pinta POR ENCIMA del contenido: el cielo es
+   transparente, así que las tarjetas se ven a través de él y pasan
+   "detrás" de los árboles/montañas */
+.reviews-scene {
+  position: relative;
+}
+
+.reviews-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/fondo_reviews.webp') no-repeat center / cover;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.reviews-carousel {
+  position: relative;
   width: 100%;
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.reviews-viewport {
+  overflow: hidden;
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1.25rem, 4vw, 2.5rem) 2rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* Tira de tarjetas: se desplaza con translateX (el loop lo controla JS) */
+.reviews-track {
+  display: flex;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  will-change: transform;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.reviews-track:active {
+  cursor: grabbing;
+}
+
+.reviews-track > * {
+  flex: 0 0 80%;
+  user-select: none;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2rem, 5vw, 2.75rem);
+  aspect-ratio: 1;
+  border: var(--border-w) solid var(--color-black);
+  border-radius: 50%;
+  background: var(--color-orange);
+  color: var(--color-black);
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.carousel-btn:hover {
+  background: var(--color-accent);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+.carousel-btn svg {
+  width: 55%;
+  height: 55%;
 }
 
 .review-bubble {

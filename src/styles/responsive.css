@@ -12,10 +12,11 @@
     height: 30%;
     background: linear-gradient(to bottom, transparent, #111111);
     pointer-events: none;
+    z-index: 3;
   }
 
-  .reviews-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .reviews-track > * {
+    flex-basis: 32%;
   }
 
   .projects-grid {

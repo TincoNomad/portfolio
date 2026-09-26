@@ -20,16 +20,147 @@ const REVIEWS = [
     text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
     linkedin: '#',
   },
+  {
+    name: 'Laura Gómez',
+    role: 'Founder, Andes Hub',
+    text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    linkedin: '#',
+  },
 ];
 ---
 
-<section class='h-screen bg-[url("/fondo_reviews.webp")] bg-no-repeat bg-cover reviews-fade !flex !justify-start'>
+<section class='h-screen reviews-scene reviews-fade !flex !justify-start'>
     <div class='w-[70%] mx-auto'>
         <h2 class='has-dots items-start mb-0 w-fit'>Reviews</h2>
-        <div class='reviews-grid'>
-            {REVIEWS.map(review => (
-                <ReviewsItem {...review} />
-            ))}
+        <div class='reviews-carousel'>
+            <div class='reviews-viewport'>
+                <div class='reviews-track'>
+                    {REVIEWS.map(review => (
+                        <ReviewsItem {...review} />
+                    ))}
+                </div>
+            </div>
+            <button type="button" class='carousel-btn prev' aria-label='Review anterior'>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class='carousel-btn next' aria-label='Review siguiente'>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
         </div>
     </div>
 </section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('.reviews-track');
+  const prevBtn = document.querySelector<HTMLButtonElement>('.carousel-btn.prev');
+  const nextBtn = document.querySelector<HTMLButtonElement>('.carousel-btn.next');
+
+  if (track) {
+    // Duplicar tarjetas para el loop infinito
+    const originals = [...track.children];
+    const count = originals.length;
+    const cloneSet = () => {
+      originals.forEach((el) => {
+        const clone = el.cloneNode(true) as HTMLElement;
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('a').forEach((a) => (a.tabIndex = -1));
+        track.appendChild(clone);
+      });
+    };
+    cloneSet();
+
+    // Ancho de una vuelta = posición donde empieza la copia
+    const loopWidth = () => {
+      const first = track.children[0] as HTMLElement | undefined;
+      const copy = track.children[count] as HTMLElement | undefined;
+      return first && copy ? copy.offsetLeft - first.offsetLeft : 0;
+    };
+
+    // Más copias si el viewport es más ancho que una vuelta
+    const viewport = track.parentElement;
+    let guard = 0;
+    while (
+      viewport &&
+      (track.children.length / count) * loopWidth() < viewport.clientWidth + loopWidth() &&
+      guard++ < 4
+    ) {
+      cloneSet();
+    }
+
+    // El carrusel se mueve por transform, no por scroll
+    let pos = 0;
+    const wrap = () => {
+      const lw = loopWidth();
+      if (lw) pos = ((pos % lw) + lw) % lw;
+    };
+    const apply = () => {
+      wrap();
+      track.style.transform = `translate3d(${-pos}px, 0, 0)`;
+    };
+
+    const step = () => {
+      const card = track.querySelector<HTMLElement>('article');
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return card ? card.offsetWidth + gap : track.clientWidth;
+    };
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Los botones acumulan distancia que el tick anima con easing
+    let tween = 0;
+    const nudge = (dir: number) => {
+      if (reduced) {
+        pos += dir * step();
+        apply();
+      } else {
+        tween += dir * step();
+      }
+    };
+    prevBtn?.addEventListener('click', () => nudge(-1));
+    nextBtn?.addEventListener('click', () => nudge(1));
+
+    // Arrastre manual (mouse/touch)
+    let dragging = false;
+    let startX = 0;
+    let startPos = 0;
+    track.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      tween = 0;
+      startX = e.clientX;
+      startPos = pos;
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      pos = startPos - (e.clientX - startX);
+      apply();
+    });
+    const endDrag = () => (dragging = false);
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    // Pausa el auto-scroll al pasar el cursor
+    let paused = false;
+    track.addEventListener('pointerenter', () => (paused = true));
+    track.addEventListener('pointerleave', () => (paused = false));
+
+    if (!reduced) {
+      const SPEED = 0.4; // px por frame (~24px/s)
+      const tick = () => {
+        if (!paused && !dragging) {
+          if (Math.abs(tween) > 0.5) {
+            const d = tween * 0.14;
+            pos += d;
+            tween -= d;
+          } else {
+            pos += tween + SPEED;
+            tween = 0;
+          }
+          apply();
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+</script>
