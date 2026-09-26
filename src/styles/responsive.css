@@ -1,4 +1,15 @@
+.socials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  justify-content: center;
+}
+
 @media screen and (min-width: 768px) {
+  header {
+    justify-content: space-between;
+  }
+
   .reviews-fade {
     position: relative;
   }
@@ -21,32 +32,5 @@
 
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-height: 368px) {
-  .news {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .links {
-    flex-wrap: wrap;
-  }
-
-  .links a.button {
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem);
-  }
-
-  .news {
-    right: 1rem;
-    left: 1rem;
-    bottom: 2.5rem;
-    max-width: 100%;
-  }
-
-  h1 {
-    line-height: 1.5;
   }
 }
