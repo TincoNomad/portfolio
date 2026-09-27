@@ -2,10 +2,6 @@
   font-size: clamp(1.275rem, 2.98vw, 2.125rem);
 }
 
-.howiwork-bg {
-  background-position: center calc(100% + 40px);
-}
-
 .socials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -56,9 +52,5 @@
 
   .footer-cta {
     font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  }
-
-  .howiwork-bg {
-    background-position: center bottom;
   }
 }
