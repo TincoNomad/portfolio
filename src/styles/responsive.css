@@ -1,5 +1,10 @@
-.footer-cta {
+.btn-wrap .footer-cta {
   font-size: clamp(1.275rem, 2.98vw, 2.125rem);
+}
+
+.btn-wrap .hero-cta {
+  font-size: 1.6875rem;
+  padding: 0.5625rem 1.40625rem;
 }
 
 .socials-grid {
@@ -37,6 +42,16 @@
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  #home .bubble {
+    margin-inline-end: 3.75rem;
+  }
+
+  .btn-wrap .hero-cta {
+    font-size: var(--font-size-nav);
+    padding: clamp(0.15625rem, 0.5vw, 0.234375rem)
+      clamp(0.3125rem, 0.9375vw, 0.46875rem);
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -50,7 +65,7 @@
     height: 20px;
   }
 
-  .footer-cta {
+  .btn-wrap .footer-cta {
     font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   }
 }

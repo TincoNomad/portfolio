@@ -370,7 +370,6 @@ a.badge {
   font-size: clamp(0.84rem, 1.92vw, 0.96rem);
   font-weight: 800;
   max-width: clamp(177px, 25.3vw, 303px);
-  margin-inline-end: 3.75rem;
 }
 
 .btn-wrap {
