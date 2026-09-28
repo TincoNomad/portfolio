@@ -42,7 +42,7 @@ const FEATURED_PROJECTS = [
       ))}
     </div>
     <div class='flex flex-col items-end my-4 relative'>
-        <p class='bubble bubble-tail-right relative z-10'>You can see more of my work in my <a class='badge' href='https://github.com/TincoNomad' target='blank'>GitHub</a> or in <a class='badge' href='https://github.com/wiracocha-labs' target='blank'>Wiracocha Labs</a></p>
+        <p class='bubble bubble-tail-right relative z-10 more-links'>You can see more of my work in my <a class='badge' href='https://github.com/TincoNomad' target='blank'>GitHub</a> or in <a class='badge' href='https://github.com/wiracocha-labs' target='blank'>Wiracocha Labs</a></p>
         <img src="/projects.webp" alt="Renzo Tincopa" class='hero-image relative z-0 -mt-[10px] me-4'>
     </div>
     <div class='flex justify-center my-4'>
@@ -53,3 +53,15 @@ const FEATURED_PROJECTS = [
     </div>
   </div>
 </section>
+
+<style>
+  .more-links {
+    max-width: clamp(336px, 48vw, 576px);
+  }
+
+  @media screen and (min-width: 1024px) {
+    .more-links {
+      max-width: clamp(364px, 52vw, 624px);
+    }
+  }
+</style>
