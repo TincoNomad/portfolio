@@ -39,7 +39,22 @@ header {
   z-index: 10;
 }
 
-header.scrolled {
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -1;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  transition:
+    height 0.3s ease-in-out,
+    background-color 0.3s ease;
+}
+
+header.scrolled::before,
+header.nav-open::before {
   background: rgba(128, 128, 128, 0.2); /* cream con transparencia */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* Safari */
@@ -424,6 +439,13 @@ a.badge {
 
 .btn-wrap:active .shadow {
   transform: translate(-5px, -5px);
+}
+
+/* Botón del header: 25% más grande que el .face base */
+header .btn-wrap .face {
+  font-size: calc(var(--font-size-nav) * 1.25);
+  padding: calc(clamp(0.15625rem, 0.5vw, 0.234375rem) * 1.25)
+    calc(clamp(0.3125rem, 0.9375vw, 0.46875rem) * 1.25);
 }
 
 .hierarchy {

@@ -6,7 +6,11 @@ const PRIORITIES = ['Good', 'Fast', 'Cheap'];
     <button type='button' class='contact-close' aria-label='Close' data-contact-close>×</button>
 
     <div class='contact-body'>
-    <form class='contact-form'>
+    <form class='contact-form' action='https://api.web3forms.com/submit' method='POST'>
+        <input type='hidden' name='access_key' value='053ca3f3-0090-40a9-99e0-f4a32471208f' />
+        <input type='hidden' name='subject' value='New quote request — Portfolio' />
+        <input type='hidden' name='from_name' value='Portfolio Contact' />
+        <input type='checkbox' name='botcheck' style='display:none' tabindex='-1' autocomplete='off' />
         <h2 class='ps-2 has-dots'>Let's build together</h2>
         <p>Tell me what you want to build. Two paths:</p>
         <p>A Telegram message — we set up a 30-minute call:</p>
@@ -278,8 +282,6 @@ const PRIORITIES = ['Good', 'Fast', 'Cheap'];
 </style>
 
 <script>
-  const CONTACT_EMAIL = 'renzotincopa@icloud.com';
-
   const modal = document.querySelector<HTMLDialogElement>('#contact-modal');
   modal?.addEventListener('click', (e) => {
     if (!modal) return;
@@ -305,20 +307,49 @@ const PRIORITIES = ['Good', 'Fast', 'Cheap'];
   );
 
   const form = modal?.querySelector<HTMLFormElement>('.contact-form');
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const original = btn?.textContent ?? '';
+
     const data = new FormData(form);
-    const body = [
-      `Name: ${data.get('name')}`,
-      `Contact: ${data.get('contact')}`,
-      `Type: ${data.get('type')}`,
-      `Budget: ${data.get('budget')}`,
-      `Priorities: ${data.getAll('prio').join(' + ') || '-'}`,
-      '',
-      `${data.get('message')}`,
-    ].join('\n');
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      `New quote — ${data.get('name')}`,
-    )}&body=${encodeURIComponent(body)}`;
+    const contact = String(data.get('contact') ?? '');
+    if (contact.includes('@')) data.set('replyto', contact);
+
+    if (btn) {
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+    }
+
+    try {
+      const resp = await fetch(form.action, { method: 'POST', body: data });
+      const json = await resp.json();
+
+      if (json.success) {
+        if (btn) {
+          btn.textContent = 'Sent ✓';
+          btn.style.background = '#16a34a';
+        }
+        form.reset();
+        queue = [];
+        setTimeout(() => modal?.close(), 1500);
+      } else if (btn) {
+        btn.textContent = 'Error, try again';
+        btn.style.background = '#dc2626';
+      }
+    } catch {
+      if (btn) {
+        btn.textContent = 'Connection error';
+        btn.style.background = '#dc2626';
+      }
+    }
+
+    if (btn) {
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+      }, 4000);
+    }
   });
 </script>

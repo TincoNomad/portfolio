@@ -13,7 +13,11 @@ import logo from '../../public/logo.png'
             <button class="face" type="button" data-contact>Let's build together</button>
         </div>
     </div>
-    <nav class='flex items-center flex-wrap justify-center gap-y-1'>
+    <button class='nav-toggle' type='button' aria-label='Abrir menú' aria-expanded='false' aria-controls='nav-menu'>
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path class='bar bar-top' d="M4 7h16"/><path class='bar bar-mid' d="M4 12h16"/><path class='bar bar-bot' d="M4 17h16"/></svg>
+    </button>
+    <nav id='nav-menu' class='nav-menu flex items-center flex-wrap justify-center gap-y-1'>
+      <div class='nav-menu-inner'>
         <ul class='gap-3 justify-center md:gap-4'>
             <li><a class='nav-link' href="#home">Home</a></li>
             <li><a class='nav-link' href="#projects">Proyects</a></li>
@@ -29,18 +33,44 @@ import logo from '../../public/logo.png'
                 <img src='/eng.webp' alt='English'>
             </button>
         </div>
+      </div>
     </nav>
 </header>
 
 
 <script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('#nav-menu');
+  const navMenuInner = document.querySelector('.nav-menu-inner');
+  const header = document.querySelector('header');
+
+  const updateMenuHeight = () => {
+    if (navMenuInner && header)
+      header.style.setProperty('--menu-h', `${navMenuInner.scrollHeight}px`);
+  };
+  updateMenuHeight();
+  window.addEventListener('resize', updateMenuHeight);
+  document.fonts?.ready.then(updateMenuHeight);
+
+  navToggle?.addEventListener('click', () => {
+    const open = navMenu?.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+    if (open) header?.classList.add('nav-open');
+  });
+
+  navMenu?.addEventListener('transitionend', () => {
+    header?.classList.toggle('nav-open', navMenu.classList.contains('open'));
+  });
+
+  navMenu?.querySelectorAll('a').forEach((link) =>
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    }),
+  );
+
   window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 0) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
+    header.classList.toggle('scrolled', window.scrollY > 0);
   });
 
   const sections = document.querySelectorAll('section[id]');
