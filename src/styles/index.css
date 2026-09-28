@@ -10,6 +10,11 @@ body {
   overflow-x: clip;
 }
 
+html {
+  background: linear-gradient(to bottom, #1e3a8a 50%, #111111 50%);
+  background-attachment: fixed;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
