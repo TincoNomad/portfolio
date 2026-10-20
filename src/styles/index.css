@@ -377,6 +377,12 @@ a.badge {
   background: var(--color-accent);
 }
 
+/* Tags de las cards de proyectos: 50% más grandes que el tag base */
+#projects .tag {
+  padding: clamp(0.1875rem, 0.75vw, 0.5625rem) clamp(0.5625rem, 1.5vw, 0.9375rem);
+  font-size: clamp(0.9375rem, 1.8vw, 1.03125rem);
+}
+
 /* Chips del hero: más grandes y gruesos que los tags de proyectos */
 #home .tag {
   font-size: clamp(0.9375rem, 1.8vw, 1rem);
