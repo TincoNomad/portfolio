@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import ProjectsHome from '../components/ProjectsHome.astro'
 import HowIwork from '../components/HowIwork.astro'
+import Clouds from '../components/Clouds.astro'
 // import Blog from '../components/Blog.astro'
 import Reviews from '../components/Reviews.astro'
 
@@ -15,7 +16,7 @@ import Reviews from '../components/Reviews.astro'
 <Layout title='Renzo Tincopa — Backend Blacksmith & AI Automation' description="Backend engineer building automation, payments, AI and distributed systems. Tell me what you're trying to achieve — I design the system and build it.">
     <div class='relative w-full bg-sunset'>
         <img src='/sol.webp' alt='' class='absolute bottom-0 left-1/2 -translate-x-[calc(50%_-_80px)] w-[clamp(150px,52.5vw,18rem)] min-[769px]:w-[clamp(200px,70vw,24rem)]'>
-        <div class='clouds-scattered'></div>
+        <Clouds />
         <div class='relative z-10'>
             <Hero />
             <ProjectsHome />
@@ -28,21 +29,3 @@ import Reviews from '../components/Reviews.astro'
         <Reviews />
     </div>
 </Layout>
-
-<script>
-  // Genera nubes dispersas aleatoriamente: garantiza presencia en arriba, medio y abajo
-  const container = document.querySelector('.clouds-scattered');
-  const zones = [[0, 30], [30, 60], [60, 92]]; // % vertical: hero, projects, howIwork
-
-  zones.forEach(([min, max]) => {
-    const count = 8 + Math.floor(Math.random() * 2); // 8-9 nubes por zona
-    for (let i = 0; i < count; i++) {
-      const cloud = document.createElement('div');
-      cloud.className = 'cloud';
-      cloud.style.top = `${min + Math.random() * (max - min)}%`;
-      cloud.style.width = '266.6px'; // tamaño anterior (150px de alto, proporción 1365x768)
-      cloud.style.animationDelay = `${-Math.random() * 60}s`; // posición horizontal aleatoria
-      container.appendChild(cloud);
-    }
-  });
-</script>

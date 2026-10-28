@@ -19,11 +19,11 @@ import logo from '../../public/logo.png'
     <nav id='nav-menu' class='nav-menu flex items-center flex-wrap justify-center gap-y-1'>
       <div class='nav-menu-inner'>
         <ul class='gap-3 justify-center md:gap-4'>
-            <li><a class='nav-link' href="#home">Home</a></li>
-            <li><a class='nav-link' href="#projects">Proyects</a></li>
-            <li><a class='nav-link' href="#about">About me</a></li>
+            <li><a class='nav-link' href="/#home">Home</a></li>
+            <li><a class='nav-link' href="/#projects">Proyects</a></li>
+            <li><a class='nav-link' href="/#about">About me</a></li>
             {/* <li><a class='nav-link' href="#blog">Blog</a></li> */}
-            <li><a class='nav-link' href="#reviews">Reviews</a></li>
+            <li><a class='nav-link' href="/#reviews">Reviews</a></li>
         </ul>
         <div class='flex gap-2 ml-4'>
             <button class='lang-btn' type='button' data-lang='es' aria-label='Versión en español' aria-pressed='false'>
@@ -81,7 +81,7 @@ import logo from '../../public/logo.png'
           if (entry.isIntersecting) {
               const id = entry.target.id;
               navLinks.forEach(link => {
-                  link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                  link.classList.toggle('active', link.getAttribute('href')?.replace(/^\//, '') === `#${id}`);
               });
           }
       });

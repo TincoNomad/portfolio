@@ -1,0 +1,29 @@
+---
+interface Props {
+    perZone?: number;
+}
+
+const { perZone = 8 } = Astro.props;
+---
+
+<div class='clouds-scattered' data-per-zone={perZone}></div>
+
+<script>
+    const zones = [[0, 30], [30, 60], [60, 92]]; // % vertical: hero, projects, howiwork
+
+    document.querySelectorAll<HTMLElement>('.clouds-scattered').forEach((container) => {
+        const perZone = Number(container.dataset.perZone) || 8;
+
+        zones.forEach(([min, max]) => {
+            const count = perZone + Math.floor(Math.random() * 2);
+            for (let i = 0; i < count; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.top = `${min + Math.random() * (max - min)}%`;
+                cloud.style.width = '266.6px'; // 150px de alto, proporción 1365x768
+                cloud.style.animationDelay = `${-Math.random() * 60}s`; // posición inicial
+                container.appendChild(cloud);
+            }
+        });
+    });
+</script>

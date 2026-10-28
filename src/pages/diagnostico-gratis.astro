@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Clouds from '../components/Clouds.astro';
+
+const MEDIOS = ['WhatsApp', 'Correo', 'Telegram', 'LinkedIn'];
+const ACCESS_KEY = '053ca3f3-0090-40a9-99e0-f4a32471208f';
+const DESCRIPTION =
+    'Cuéntame qué sistema tienes y qué te cuesta hoy. ' +
+    'Reviso tu caso sin costo y te escribo en 3 días hábiles.';
+---
+
+<Layout
+    lang='es'
+    title='Revisión gratis de tu sistema — Renzo Tincopa'
+    description={DESCRIPTION}
+>
+    <div class='relative w-full bg-sunset'>
+        <Clouds perZone={4} />
+        <section class='relative z-10 min-h-dvh py-10 md:py-16'>
+            <div class='w-full max-w-6xl mx-auto flex flex-col items-center gap-8'>
+                <h2 class='has-dots text-center'>Revisión gratis de tu sistema ⚒️</h2>
+
+                <p class='bubble bubble-shadow-right inquiry-intro'>
+                    Gracias por escribirme 🙌 Solo tengo 3 cupos este mes. Cuéntame lo básico,
+                    sin contraseñas ni datos sensibles, eso lo vemos en privado 🔒
+                </p>
+
+                <div class='bubble inquiry-card'>
+                    <form
+                        class='inquiry-form'
+                        action='https://api.web3forms.com/submit'
+                        method='POST'
+                    >
+                        <input type='hidden' name='access_key' value={ACCESS_KEY} />
+                        <input
+                            type='hidden'
+                            name='subject'
+                            value='Revisión gratis — Diagnóstico'
+                        />
+                        <input type='hidden' name='from_name' value='Diagnóstico gratis' />
+                        <input
+                            type='checkbox'
+                            name='botcheck'
+                            style='display:none'
+                            tabindex='-1'
+                            autocomplete='off'
+                        />
+
+                        <label>
+                            Cómo te llamo
+                            <input type='text' name='nombre' required autocomplete='name' />
+                        </label>
+
+                        <label>
+                            Qué sistema es
+                            <input
+                                type='text'
+                                name='sistema'
+                                required
+                                autocomplete='off'
+                                aria-describedby='ayuda-sistema'
+                            />
+                            <span class='help' id='ayuda-sistema'>
+                                Por ejemplo: reservas de mi academia, pagos de mi tienda,
+                                una app que hizo un freelancer.
+                            </span>
+                        </label>
+
+                        <label>
+                            Qué te preocupa o qué te cuesta hoy
+                            <textarea
+                                name='problema'
+                                rows='5'
+                                required
+                                autocomplete='off'
+                                aria-describedby='ayuda-problema'></textarea>
+                            <span class='help' id='ayuda-problema'>
+                                Tiempo perdido, errores, plata, clientes que se quejan. Lo que sea.
+                            </span>
+                        </label>
+
+                        <fieldset>
+                            <legend>Cómo prefieres que te contacte</legend>
+                            <div class='medios'>
+                                {MEDIOS.map((medio) => (
+                                    <label>
+                                        <input type='radio' name='medio' value={medio} required />
+                                        {medio}
+                                    </label>
+                                ))}
+                            </div>
+                        </fieldset>
+
+                        <label>
+                            Tu número, correo o usuario
+                            <input
+                                type='text'
+                                name='contacto'
+                                required
+                                autocomplete='off'
+                                aria-describedby='ayuda-contacto'
+                            />
+                            <span class='help' id='ayuda-contacto'>
+                                El dato del medio que elegiste arriba.
+                            </span>
+                        </label>
+
+                        <label class='consent'>
+                            <input type='checkbox' name='consentimiento' value='sí' required />
+                            <span>
+                                Acepto que se pueda contar el caso, sin mi nombre si prefiero 🤝
+                            </span>
+                        </label>
+                        <p class='help'>Uso tus datos solo para responderte. No los comparto.</p>
+
+                        <div class='btn-wrap'>
+                            <div class='shadow'></div>
+                            <button type='submit' class='face'>Enviar mi consulta</button>
+                        </div>
+                    </form>
+
+                    <div class='inquiry-success' role='status' hidden>
+                        <h3>Listo 🎉</h3>
+                        <p>
+                            Reviso tu respuesta y te escribo en <strong>3 días hábiles</strong>
+                            por el medio que elegiste.
+                        </p>
+                        <p>
+                            Mejor si me conectas en <a
+                                class='badge'
+                                href='https://www.linkedin.com/in/tinconomad/'
+                                target='_blank'
+                                rel='noopener noreferrer'>LinkedIn</a
+                            > 🤝
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>
+
+<style>
+    /* Puente entre el durazno final de .bg-sunset y el negro del footer */
+    .sunset-fade {
+        width: 100%;
+        height: clamp(64px, 12vh, 160px);
+        background: linear-gradient(to bottom, #fdba74 0%, var(--color-black) 100%);
+    }
+
+    .inquiry-intro {
+        max-width: min(92vw, 560px);
+        margin: 0;
+        text-align: center;
+    }
+
+    .inquiry-card {
+        display: block;
+        width: 100%;
+        max-width: min(92vw, 640px);
+        text-align: start;
+    }
+
+    /* Una tarjeta grande no lleva cola de burbuja */
+    .inquiry-card::before,
+    .inquiry-card::after {
+        display: none;
+    }
+
+    .inquiry-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* display:flex del form y del mensaje ganan al [hidden] del navegador */
+    .inquiry-form[hidden],
+    .inquiry-success[hidden] {
+        display: none;
+    }
+
+    .inquiry-form label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .inquiry-form input[type='text'],
+    .inquiry-form textarea {
+        border: var(--border-w) solid var(--color-black);
+        border-radius: var(--radius-sm);
+        background: var(--color-accent);
+        padding: 0.5rem 0.75rem;
+        font-family: var(--font-body);
+        color: var(--color-black);
+    }
+
+    .inquiry-form textarea {
+        resize: vertical;
+    }
+
+    .inquiry-form input[type='radio'],
+    .inquiry-form input[type='checkbox'] {
+        accent-color: var(--color-black);
+        margin: 0;
+    }
+
+    .inquiry-form fieldset {
+        border: var(--border-w) solid var(--color-black);
+        border-radius: var(--radius-sm);
+        background: var(--color-accent);
+        padding: 0.75rem;
+        margin: 0;
+    }
+
+    .inquiry-form legend {
+        font-weight: 700;
+        padding-inline: 0.25rem;
+    }
+
+    .inquiry-form .medios {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.25rem;
+    }
+
+    .inquiry-form .medios label {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.375rem;
+        cursor: pointer;
+    }
+
+    .inquiry-form .consent {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 0.5rem;
+        cursor: pointer;
+    }
+
+    .inquiry-form .btn-wrap {
+        align-self: flex-start;
+    }
+
+    .help {
+        font-size: 0.875rem;
+        line-height: 1.3;
+    }
+
+    .inquiry-success {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .inquiry-success p {
+        margin: 0;
+    }
+</style>
+
+<script>
+    const form = document.querySelector<HTMLFormElement>('.inquiry-form');
+    const success = document.querySelector<HTMLElement>('.inquiry-success');
+
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+        const original = btn?.textContent ?? 'Enviar mi consulta';
+
+        if (btn) {
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+        }
+
+        try {
+            const resp = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+            const json = await resp.json();
+
+            if (json.success) {
+                form.hidden = true;
+                if (success) success.hidden = false;
+                return;
+            }
+            throw new Error('unsuccessful');
+        } catch {
+            if (btn) {
+                btn.textContent = 'No se pudo enviar. Intenta otra vez';
+                btn.disabled = false;
+                setTimeout(() => {
+                    btn.textContent = original;
+                }, 4000);
+            }
+        }
+    });
+</script>
