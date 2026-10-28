@@ -1,0 +1,31 @@
+---
+---
+
+<div class='not-found'>
+    <h1 class='not-found-code text-center'>404</h1>
+
+    <p class='bubble bubble-shadow-right text-center'>
+        This page doesn't exist. Either the link is broken or it moved somewhere else.
+        Nothing is lost — let's get you back.
+    </p>
+
+    <div class='btn-wrap'>
+        <div class='shadow'></div>
+        <a class='face' href='/'>Back to home</a>
+    </div>
+</div>
+
+<style>
+    .not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /* El contorno negro de 10px del h1 global solo funciona a tamaño display */
+    .not-found-code {
+        font-size: clamp(4rem, 16vw, 9rem);
+        line-height: 1;
+    }
+</style>

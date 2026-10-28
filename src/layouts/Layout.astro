@@ -9,12 +9,14 @@ interface Props {
 	title?: string;
 	description?: string;
 	lang?: string;
+	noindex?: boolean;
 }
 
 const {
 	title = 'Renzo Tincopa — Backend Blacksmith',
 	description = "Backend engineer building automation, payments, AI and distributed systems. Tell me what you're trying to achieve — I design the system and build it.",
 	lang = 'en',
+	noindex = false,
 } = Astro.props;
 
 const personSchema = JSON.stringify({
@@ -38,6 +40,7 @@ const personSchema = JSON.stringify({
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<script type="application/ld+json" set:html={personSchema} />
 	</head>
     <body>

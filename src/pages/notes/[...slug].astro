@@ -1,0 +1,43 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import Clouds from '../../components/Clouds.astro';
+import NotFound from '../../components/NotFound.astro';
+import { noteKey, notes } from '../../lib/notes';
+import '../../styles/note.css';
+
+const slug = Astro.params.slug ?? '';
+const { value: html, metadata } = await notes().getWithMetadata(noteKey(slug));
+
+// No se puede usar Astro.rewrite('/404'): /404 es una ruta prerenderizada.
+if (!html) Astro.response.status = 404;
+
+const title = metadata?.title ?? slug;
+---
+
+<Layout
+    lang='en'
+    title={html ? title : '404'}
+    description='Private document.'
+    noindex
+>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 py-12 md:py-16'>
+            {
+                html ? (
+                    <>
+                        <h1 class='mb-6 text-center has-dots'>{title}</h1>
+                        <article class='note-card'>
+                            <div class='note' set:html={html} />
+                        </article>
+                    </>
+                ) : (
+                    <NotFound />
+                )
+            }
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>
