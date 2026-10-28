@@ -1,0 +1,53 @@
+---
+export const prerender = false;
+
+import Layout from '../layouts/Layout.astro';
+import Clouds from '../components/Clouds.astro';
+import NotFound from '../components/NotFound.astro';
+import NoteLogin from '../components/NoteLogin.astro';
+import { noteKey, notes, verifySession } from '../lib/notes';
+import '../styles/note.css';
+
+const slug = Astro.params.slug ?? '';
+const { value: html, metadata } = await notes().getWithMetadata(noteKey(slug));
+
+if (!html) Astro.response.status = 404;
+
+const title = metadata?.title ?? slug;
+const passwordHash = metadata?.passwordHash;
+const isProtected = Boolean(passwordHash && metadata?.passwordSalt);
+
+const unlocked = isProtected
+    ? await verifySession(Astro.cookies.get('access')?.value, slug, passwordHash!)
+    : true;
+
+const showError = Astro.url.searchParams.has('error');
+---
+
+<Layout
+    lang='en'
+    title={html ? title : '404'}
+    description='Private document.'
+    noindex
+>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 py-12 md:py-16'>
+            {
+                !html ? (
+                    <NotFound />
+                ) : !unlocked ? (
+                    <NoteLogin slug={slug} title={title} error={showError} />
+                ) : (
+                    <>
+                        <h1 class='has-dots mb-6 text-center'>{title}</h1>
+                        <article class='note-card'>
+                            <div class='note' set:html={html} />
+                        </article>
+                    </>
+                )
+            }
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>

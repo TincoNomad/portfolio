@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
-import { noteKey, notes, toSlug } from '../../lib/notes';
+import { hashPassword, noteKey, notes, randomSalt, toSlug } from '../../lib/notes';
 
 export const prerender = false;
 
@@ -47,6 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
         slug?: string;
         title?: string;
         html?: string;
+        password?: string;
     } | null;
 
     if (!body?.slug || typeof body.html !== 'string' || !body.html.trim()) {
@@ -62,12 +63,31 @@ export const POST: APIRoute = async ({ request }) => {
     // Sin title explícito, el título es el nombre original (antes de slugificar)
     const title = body.title?.trim() || body.slug.trim() || plain;
 
+    // Si la nota ya tenía contraseña y no se manda una nueva, se conserva: republicar
+    // sin querer no debe desproteger una cotización que ya estaba cerrada.
+    const previous = (await notes().getWithMetadata(noteKey(slug))).metadata;
+    let passwordHash = previous?.passwordHash;
+    let passwordSalt = previous?.passwordSalt;
+
+    if (typeof body.password === 'string' && body.password.length > 0) {
+        if (body.password.length < 12) {
+            return json({ error: 'la contraseña debe tener al menos 12 caracteres' }, 400);
+        }
+        passwordSalt = randomSalt();
+        passwordHash = await hashPassword(body.password, passwordSalt);
+    }
+
     await notes().put(`${ID_PREFIX}${plain}`, slug);
     await notes().put(noteKey(slug), body.html, {
-        metadata: { title, updatedAt: new Date().toISOString() },
+        metadata: {
+            title,
+            updatedAt: new Date().toISOString(),
+            passwordHash,
+            passwordSalt,
+        },
     });
 
-    return json({ ok: true, url: `/notes/${slug}` });
+    return json({ ok: true, url: `/${slug}`, protected: Boolean(passwordHash) });
 };
 
 export const GET: APIRoute = async ({ request, url }) => {
@@ -79,7 +99,7 @@ export const GET: APIRoute = async ({ request, url }) => {
     const slug = await publicSlugFor(plain, false);
     if (!slug) return json({ error: 'esa nota no está publicada' }, 404);
 
-    return json({ ok: true, url: `/notes/${slug}` });
+    return json({ ok: true, url: `/${slug}` });
 };
 
 export const DELETE: APIRoute = async ({ request, url }) => {
