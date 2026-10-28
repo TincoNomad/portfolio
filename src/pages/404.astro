@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Clouds from '../components/Clouds.astro';
+---
+
+<Layout
+    lang='en'
+    title='404 — Page not found · Renzo Tincopa'
+    description='This page does not exist. Head back to the portfolio.'
+>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 justify-center gap-8 py-16'>
+            <h1 class='not-found-code text-center has-dots'>404</h1>
+
+            <p class='bubble bubble-shadow-right text-center'>
+                This page doesn't exist. Either the link is broken or it moved somewhere else.
+                Nothing is lost — let's get you back.
+            </p>
+
+            <div class='btn-wrap'>
+                <div class='shadow'></div>
+                <a class='face' href='/'>Back to home</a>
+            </div>
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>
+
+<style>
+    /* El contorno negro de 10px del h1 global solo funciona a tamaño display */
+    .not-found-code {
+        font-size: clamp(4rem, 16vw, 9rem);
+        line-height: 1;
+    }
+</style>

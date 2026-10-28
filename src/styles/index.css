@@ -188,6 +188,14 @@ h3 {
   background: linear-gradient(to bottom, #1e3a8a 0%, #60a5fa 40%, #fdba74 100%);
 }
 
+/* Puente entre el durazno final de .bg-sunset y el negro del footer */
+.sunset-fade {
+  width: 100%;
+  height: clamp(64px, 12vh, 160px);
+  background: linear-gradient(to bottom, #fdba74 0%, var(--color-black) 100%);
+}
+
+
 /* Nubes dispersas sobre bg-sunset: generadas por JS con posiciones aleatorias */
 .clouds-scattered {
   position: absolute;
