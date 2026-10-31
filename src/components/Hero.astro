@@ -36,7 +36,16 @@ import SocialIcon from './SocialIcon.astro';
             </div>
         </div>
         <div class='flex flex-col items-center gap-4 self-stretch md:col-start-1 md:row-start-1'>
-            <img src='/mi-gif.gif' alt='Renzo Tincopa' class='rounded-lg w-56 md:w-full md:max-w-md md:self-end aspect-square object-cover'> 
+            <video
+                class='hero-video rounded-lg w-56 md:w-full md:max-w-md md:self-end aspect-square object-cover'
+                src='/mi-gif.mp4'
+                poster='/mi-gif-poster.webp'
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label='Renzo Tincopa'
+            ></video>
             <div class='has-dots socials-grid gap-4 mt-auto md:self-end md:w-full md:max-w-md'>
                 <SocialIcon name='github' url='https://github.com/TincoNomad' class='badge' size={28} />
                 <SocialIcon name='linkedin' url='https://www.linkedin.com/in/tinconomad/' class='badge' size={28} />
@@ -49,3 +58,10 @@ import SocialIcon from './SocialIcon.astro';
     </div>
     <img id='cottage' src="/hero.webp" alt="" class='static w-84 opacity-90 pointer-events-none md:absolute md:bottom-0 md:right-[5%] md:w-[clamp(414px,28.8vw,570px)] md:z-0'>
 </section>
+
+<script>
+    // Quien pide menos movimiento ve el poster quieto, no el video en loop.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelector<HTMLVideoElement>('.hero-video')?.removeAttribute('autoplay');
+    }
+</script>

@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Clouds from '../components/Clouds.astro';
+import '../styles/note.css';
+
+const DESCRIPTION =
+    'What data this site collects, what I use it for, who else sees it, ' +
+    'and how to get it deleted.';
+---
+
+<Layout lang='en' title='Privacy Policy — Renzo Tincopa' description={DESCRIPTION}>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 py-12 md:py-16'>
+            <h1 class='has-dots mb-6 text-center'>Privacy Policy</h1>
+            <article class='note-card'>
+                <div class='note'>
+                    <p>
+                        This site asks for very little and uses it for one thing:
+                        replying to you. Here are the rules, short and without fine
+                        print. Last updated: <strong>October 30, 2026</strong>.
+                    </p>
+
+                    <h2>Who is responsible</h2>
+                    <p>
+                        Renzo Tincopa, an individual based in Urubamba, Cusco, Peru.
+                        For anything about your data, message me on
+                        <a href='https://t.me/tinconomad' target='_blank' rel='noopener noreferrer'
+                            >Telegram: @tinconomad</a
+                        >.
+                    </p>
+
+                    <h2>What I collect</h2>
+                    <p>Only what you write yourself, in two forms:</p>
+                    <ul>
+                        <li>
+                            <strong>Free review</strong> (<a href='/diagnostico-gratis'
+                                >/diagnostico-gratis</a
+                            >): name or nickname, what system you run, what it is
+                            costing you, the channel you prefer for contact, and
+                            the detail for that channel (phone, email or handle).
+                        </li>
+                        <li>
+                            <strong>Contact form</strong> (the "Let's build
+                            together" button): name, email or Telegram, project
+                            type, budget range, priorities and your message.
+                        </li>
+                    </ul>
+                    <p>
+                        And the recommendations published in the Reviews section,
+                        explained further down. No passwords, no card numbers, no
+                        sensitive data. If you send them anyway, I delete them.
+                    </p>
+
+                    <h2>Why I use it</h2>
+                    <ul>
+                        <li>To reply and give you the review or quote you asked for.</li>
+                        <li>To run the project, if we end up working together.</li>
+                        <li>
+                            To tell your case publicly as an example — only if you
+                            tick that box in the free review form, and without
+                            your name unless you say otherwise.
+                        </li>
+                    </ul>
+                    <p>
+                        Nothing else. No mailing list, no ads, no selling or renting
+                        data, and no automated decisions about you.
+                    </p>
+
+                    <h2>Legal basis</h2>
+                    <p>
+                        Your consent. Sending a form is your permission, and you can
+                        take it back whenever you want.
+                    </p>
+
+                    <h2>Who else sees it</h2>
+                    <p>
+                        Your data passes through three hands, and none of them use it
+                        for their own purposes:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Web3Forms</strong> (<a
+                                href='https://web3forms.com/privacy'
+                                target='_blank'
+                                rel='noopener noreferrer'>web3forms.com/privacy</a
+                            >): receives the form and forwards it to my email. It
+                            keeps a copy in its dashboard under its own policy.
+                        </li>
+                        <li>
+                            <strong>Cloudflare</strong>: serves the site and keeps
+                            technical logs (IP address, date, page) for security and
+                            uptime.
+                        </li>
+                        <li>
+                            <strong>My email provider</strong>: where the forwarded
+                            message lands.
+                        </li>
+                    </ul>
+                    <p>No analytics, no social pixels, no advertising.</p>
+
+                    <h2>How long I keep it</h2>
+                    <p>
+                        One year from your last message if nothing moves forward;
+                        after that I delete it. If we work together, for the length
+                        of the project plus whatever the law makes me keep
+                        (accounting records, for example). Recommendations stay up
+                        until you ask me to take them down.
+                    </p>
+
+                    <h2>Cookies</h2>
+                    <p>
+                        One: <code>access</code>. It opens a private note without
+                        asking for the password on every page. It is technical,
+                        lasts 7 days and tracks nothing. That is why there is no
+                        cookie banner here.
+                    </p>
+
+                    <h2>Your rights</h2>
+                    <p>
+                        You can ask me to show you what I have, correct it, delete
+                        it, stop using it, or take back your consent. Message me on
+                        Telegram and tell me what you need.
+                    </p>
+                    <p>
+                        If you are not happy with my answer, you can go to the
+                        National Authority for Personal Data Protection (ANPD) at
+                        the Ministry of Justice and Human Rights of Peru.
+                    </p>
+
+                    <h2>Deleting your data</h2>
+                    <p>This is a commitment, not a vague gesture.</p>
+                    <ul>
+                        <li>
+                            Message me on <a
+                                href='https://t.me/tinconomad'
+                                target='_blank'
+                                rel='noopener noreferrer'>Telegram</a
+                            >
+                            with the word "data" and tell me what to remove.
+                        </li>
+                        <li>
+                            Within <strong>7 business days</strong> I send
+                            you an email confirming what I deleted and on what
+                            date. Give me an email address in the chat, and that
+                            email is your receipt.
+                        </li>
+                        <li>
+                            If your name is in a recommendation or a published
+                            case, it comes off the site the same day. Search
+                            engines and saved copies can take a few days to catch
+                            up; that part is out of my hands.
+                        </li>
+                        <li>
+                            The only thing I keep is what the law makes me keep,
+                            such as accounting records.
+                        </li>
+                    </ul>
+
+                    <h2>Recommendations</h2>
+                    <p>
+                        The reviews in the Reviews section are recommendations
+                        people left me on LinkedIn. I republish the name, role and
+                        profile link that came with each recommendation. If you
+                        delete your recommendation on LinkedIn, or simply change
+                        your mind, message me on Telegram and it comes off the
+                        site the same day.
+                    </p>
+
+                    <h2>Minors</h2>
+                    <p>
+                        This site is for people hiring services. I do not knowingly
+                        collect data from minors. If you think I kept data from a
+                        minor, tell me and I delete it.
+                    </p>
+
+                    <h2>Changes</h2>
+                    <p>
+                        If something changes, I update the date at the top. The
+                        version published here is the one that counts.
+                    </p>
+                </div>
+            </article>
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>

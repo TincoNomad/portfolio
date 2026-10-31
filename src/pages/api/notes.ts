@@ -12,10 +12,11 @@ const json = (body: unknown, status = 200) =>
         headers: { 'content-type': 'application/json' },
     });
 
-/** Sin API_SECRET configurado el endpoint queda abierto: solo para desarrollo local. */
+/** Sin API_SECRET no hay API: fallar cerrado es más seguro que abrir todo.
+ *  Para desarrollo local, define API_SECRET en .dev.vars. */
 function unauthorized(request: Request): boolean {
     const secret = (env as unknown as { API_SECRET?: string }).API_SECRET;
-    if (!secret) return false;
+    if (!secret) return true;
     return request.headers.get('authorization') !== `Bearer ${secret}`;
 }
 
