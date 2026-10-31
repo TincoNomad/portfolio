@@ -2,22 +2,28 @@
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import ContactModal from '../components/ContactModal.astro'
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 import '../styles/index.css'
 import '../styles/responsive.css'
 
 interface Props {
 	title?: string;
 	description?: string;
-	lang?: string;
+	lang?: Lang;
 	noindex?: boolean;
 }
+
+const currentLang = Astro.currentLocale as Lang ?? 'en';
 
 const {
 	title = 'Renzo Tincopa — Backend Blacksmith',
 	description = "Backend engineer building automation, payments, AI and distributed systems. Tell me what you're trying to achieve — I design the system and build it.",
-	lang = 'en',
+	lang = currentLang,
 	noindex = false,
 } = Astro.props;
+
+const t = useTranslations(lang);
 
 const personSchema = JSON.stringify({
 	'@context': 'https://schema.org',

@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Clouds from '../../components/Clouds.astro';
+import '../../styles/note.css';
+
+const DESCRIPTION =
+    'Qué datos recopila este sitio, para qué los uso, quién más los ve ' +
+    'y cómo hacer que los eliminen.';
+---
+
+<Layout title='Política de privacidad — Renzo Tincopa' description={DESCRIPTION}>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 py-12 md:py-16'>
+            <h1 class='has-dots mb-6 text-center'>Política de privacidad</h1>
+            <article class='note-card'>
+                <div class='note'>
+                    <p>
+                        Este sitio pide muy poco y lo usa para una sola cosa:
+                        responderte. Aquí están las reglas, cortas y sin letra
+                        pequeña. Última actualización: <strong>30 de octubre de 2026</strong>.
+                    </p>
+
+                    <h2>Quién es responsable</h2>
+                    <p>
+                        Renzo Tincopa, persona natural con base en Urubamba, Cusco, Perú.
+                        Para cualquier tema sobre tus datos, escríbeme por
+                        <a href='https://t.me/tinconomad' target='_blank' rel='noopener noreferrer'
+                            >Telegram: @tinconomad</a
+                        >.
+                    </p>
+
+                    <h2>Qué recopilo</h2>
+                    <p>Solo lo que tú mismo escribes, en dos formularios:</p>
+                    <ul>
+                        <li>
+                            <strong>Revisión gratis</strong> (<a href='/es/diagnostico-gratis'
+                                >/es/diagnostico-gratis</a
+                            >): nombre o apodo, qué sistema tienes, qué te cuesta,
+                            el canal por el que prefieres que te contacte y el dato
+                            de ese canal (teléfono, correo o usuario).
+                        </li>
+                        <li>
+                            <strong>Formulario de contacto</strong> (botón "Construyamos juntos"):
+                            nombre, correo o Telegram, tipo de proyecto, rango de presupuesto,
+                            prioridades y tu mensaje.
+                        </li>
+                    </ul>
+                    <p>
+                        Y las recomendaciones publicadas en la sección Reseñas,
+                        explicadas más abajo. No contraseñas, no números de tarjeta,
+                        no datos sensibles. Si me los envías de todos modos, los elimino.
+                    </p>
+
+                    <h2>Para qué lo uso</h2>
+                    <ul>
+                        <li>Para responderte y darte la revisión o cotización que pediste.</li>
+                        <li>Para ejecutar el proyecto, si terminamos trabajando juntos.</li>
+                        <li>
+                            Para contar tu caso públicamente como ejemplo — solo si
+                            marcas la casilla en la revisión gratis, y sin tu
+                            nombre a menos que digas lo contrario.
+                        </li>
+                    </ul>
+                    <p>
+                        Nada más. No listas de correo, no anuncios, no venta o alquiler
+                        de datos, y no decisiones automatizadas sobre ti.
+                    </p>
+
+                    <h2>Base legal</h2>
+                    <p>
+                        Tu consentimiento. Enviar un formulario es tu permiso, y puedes
+                        retirarlo cuando quieras.
+                    </p>
+
+                    <h2>Quién más lo ve</h2>
+                    <p>
+                        Tus datos pasan por tres manos, y ninguna los usa para sus
+                        propios fines:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Web3Forms</strong> (<a
+                                href='https://web3forms.com/privacy'
+                                target='_blank'
+                                rel='noopener noreferrer'>web3forms.com/privacy</a
+                            >): recibe el formulario y me lo reenvía por correo. Guarda
+                            una copia en su panel bajo su propia política.
+                        </li>
+                        <li>
+                            <strong>Cloudflare</strong>: sirve el sitio y guarda
+                            registros técnicos (dirección IP, fecha, página) para
+                            seguridad y disponibilidad.
+                        </li>
+                        <li>
+                            <strong>Mi proveedor de correo</strong>: donde llega el
+                            mensaje reenviado.
+                        </li>
+                    </ul>
+                    <p>No analytics, no píxeles sociales, no publicidad.</p>
+
+                    <h2>Cuánto tiempo lo guardo</h2>
+                    <p>
+                        Un año desde tu último mensaje si no avanza nada; después lo
+                        elimino. Si trabajamos juntos, durante la duración del proyecto
+                        más lo que la ley me obligue a conservar (por ejemplo, registros
+                        contables). Las recomendaciones se mantienen hasta que me pidas
+                        que las retire.
+                    </p>
+
+                    <h2>Cookies</h2>
+                    <p>
+                        Una: <code>access</code>. Abre una nota privada sin pedirte la
+                        contraseña en cada página. Es técnica, dura 7 días y no rastrea
+                        nada. Por eso no hay banner de cookies aquí.
+                    </p>
+
+                    <h2>Tus derechos</h2>
+                    <p>
+                        Puedes pedirme que te muestre qué tengo, que lo corrija, que lo
+                        elimine, que deje de usarlo o que retire tu consentimiento.
+                        Escríbeme por Telegram y dime qué necesitas.
+                    </p>
+                    <p>
+                        Si no estás conforme con mi respuesta, puedes acudir a la
+                        Autoridad Nacional de Protección de Datos Personales (ANPD) del
+                        Ministerio de Justicia y Derechos Humanos del Perú.
+                    </p>
+
+                    <h2>Eliminar tus datos</h2>
+                    <p>Esto es un compromiso, no un gesto vago.</p>
+                    <ul>
+                        <li>
+                            Escríbeme por <a
+                                href='https://t.me/tinconomad'
+                                target='_blank'
+                                rel='noopener noreferrer'>Telegram</a
+                            >
+                            con la palabra "datos" y dime qué quieres que elimine.
+                        </li>
+                        <li>
+                            En un plazo de <strong>7 días hábiles</strong> te envío un
+                            correo confirmando qué eliminé y en qué fecha. Dame una
+                            dirección de correo en el chat; ese correo es tu recibo.
+                        </li>
+                        <li>
+                            Si tu nombre está en una recomendación o en un caso
+                            publicado, se retira del sitio el mismo día. Los motores de
+                            búsqueda y las copias guardadas pueden tardar unos días en
+                            actualizarse; esa parte no está en mis manos.
+                        </li>
+                        <li>
+                            Lo único que conservo es lo que la ley me obligue a conservar,
+                            como registros contables.
+                        </li>
+                    </ul>
+
+                    <h2>Recomendaciones</h2>
+                    <p>
+                        Las reseñas en la sección Reseñas son recomendaciones que me
+                        dejaron en LinkedIn. Republico el nombre, rol y enlace de perfil
+                        que venía con cada una. Si eliminas tu recomendación en LinkedIn,
+                        o simplemente cambias de opinión, escríbeme por Telegram y se
+                        retira del sitio el mismo día.
+                    </p>
+
+                    <h2>Menores</h2>
+                    <p>
+                        Este sitio es para personas que contratan servicios. No recopilo
+                        datos de menores a sabiendas. Si crees que guardé datos de un
+                        menor, avísame y los elimino.
+                    </p>
+
+                    <h2>Cambios</h2>
+                    <p>
+                        Si algo cambia, actualizo la fecha de arriba. La versión
+                        publicada aquí es la que vale.
+                    </p>
+                </div>
+            </article>
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>

@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Clouds from '../components/Clouds.astro';
+import Layout from '../../layouts/Layout.astro';
+import Clouds from '../../components/Clouds.astro';
 
 const MEDIOS = ['WhatsApp', 'Correo', 'Telegram', 'LinkedIn'];
 const ACCESS_KEY = '053ca3f3-0090-40a9-99e0-f4a32471208f';
@@ -10,7 +10,6 @@ const DESCRIPTION =
 ---
 
 <Layout
-    lang='es'
     title='Revisión gratis de tu sistema — Renzo Tincopa'
     description={DESCRIPTION}
 >
@@ -115,10 +114,8 @@ const DESCRIPTION =
                         <p class='help'>
                             Uso tus datos para responderte y, si marcas la casilla, para contar tu
                             caso.
-                            <a href='/privacy' class='text-(--color-orange-dark) underline'
-                                >Política de privacidad</a
-                            >
-                            (en inglés).
+                            <a href='/es/privacy' class='text-(--color-orange-dark) underline'
+                                >Política de privacidad</a>.
                         </p>
 
                         <div class='btn-wrap'>

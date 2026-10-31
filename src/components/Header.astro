@@ -1,4 +1,19 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+const lang = Astro.currentLocale as Lang ?? 'en';
+const t = useTranslations(lang);
+
+const homeUrl = getRelativeLocaleUrl(lang, '/');
+const projectsUrl = `${homeUrl}#projects`;
+const aboutUrl = `${homeUrl}#about`;
+const reviewsUrl = `${homeUrl}#reviews`;
+
+const currentPath = Astro.url.pathname.replace(/^\/es/, '') || '/';
+const esUrl = getRelativeLocaleUrl('es', currentPath);
+const enUrl = getRelativeLocaleUrl('en', currentPath);
 ---
 
 <header class='!z-50'>
@@ -8,28 +23,28 @@
         </div>
         <div class="btn-wrap">
             <div class="shadow"></div>
-            <button class="face" type="button" data-contact>Let's build together</button>
+            <button class="face" type="button" data-contact>{t('header.cta')}</button>
         </div>
     </div>
-    <button class='nav-toggle' type='button' aria-label='Abrir menú' aria-expanded='false' aria-controls='nav-menu'>
+    <button class='nav-toggle' type='button' aria-label={t('nav.toggle')} aria-expanded='false' aria-controls='nav-menu'>
         <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path class='bar bar-top' d="M4 7h16"/><path class='bar bar-mid' d="M4 12h16"/><path class='bar bar-bot' d="M4 17h16"/></svg>
     </button>
     <nav id='nav-menu' class='nav-menu flex items-center flex-wrap justify-center gap-y-1'>
       <div class='nav-menu-inner'>
         <ul class='gap-3 justify-center md:gap-4'>
-            <li><a class='nav-link' href="/#home">Home</a></li>
-            <li><a class='nav-link' href="/#projects">Projects</a></li>
-            <li><a class='nav-link' href="/#about">About me</a></li>
+            <li><a class='nav-link' href={homeUrl}>{t('nav.home')}</a></li>
+            <li><a class='nav-link' href={projectsUrl}>{t('nav.projects')}</a></li>
+            <li><a class='nav-link' href={aboutUrl}>{t('nav.about')}</a></li>
             {/* <li><a class='nav-link' href="#blog">Blog</a></li> */}
-            <li><a class='nav-link' href="/#reviews">Reviews</a></li>
+            <li><a class='nav-link' href={reviewsUrl}>{t('nav.reviews')}</a></li>
         </ul>
         <div class='flex gap-2 ml-4'>
-            <button class='lang-btn' type='button' data-lang='es' aria-label='Versión en español' aria-pressed='false'>
+            <a class='lang-btn' href={esUrl} aria-label={t('lang.es')} aria-pressed={lang === 'es'}>
                 <img src='/es.webp' alt='Español'>
-            </button>
-            <button class='lang-btn' type='button' data-lang='en' aria-label='English version' aria-pressed='true'>
+            </a>
+            <a class='lang-btn' href={enUrl} aria-label={t('lang.en')} aria-pressed={lang === 'en'}>
                 <img src='/eng.webp' alt='English'>
-            </button>
+            </a>
         </div>
       </div>
     </nav>

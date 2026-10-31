@@ -1,5 +1,16 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import SocialIcon from './SocialIcon.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+const lang = Astro.currentLocale as Lang ?? 'en';
+const t = useTranslations(lang);
+
+const homeUrl = getRelativeLocaleUrl(lang, '/');
+const aboutUrl = `${homeUrl}#about`;
+const freeReviewUrl = getRelativeLocaleUrl('es', '/diagnostico-gratis');
+const privacyUrl = getRelativeLocaleUrl(lang, '/privacy');
 ---
 
 <footer class="w-full bg-black text-(--color-cream)">
@@ -11,25 +22,25 @@ import SocialIcon from './SocialIcon.astro';
                 </div>
                 <div class="btn-wrap">
                     <div class="shadow"></div>
-                    <button class="face footer-cta px-[clamp(0.5rem,1.5vw,0.75rem)]! py-[clamp(0.25rem,0.8vw,0.375rem)]!" type="button" data-contact>Let's build together</button>
+                    <button class="face footer-cta px-[clamp(0.5rem,1.5vw,0.75rem)]! py-[clamp(0.25rem,0.8vw,0.375rem)]!" type="button" data-contact>{t('header.cta')}</button>
                 </div>
             </div>
             <div class="flex flex-col gap-4 items-center">
-                <ul class='footer-links gap-6 min-[769px]:gap-16'>
+                <ul class='footer-links gap-6 md:gap-8'>
                     <li>
-                        <a href="/" class="text-(--color-cream) hover:underline">Home</a>
+                        <a href={homeUrl} class="text-(--color-cream) hover:underline">{t('nav.home')}</a>
                     </li>
                     <li>
-                        <a href="/#about" class="text-(--color-cream) hover:underline">About</a>
+                        <a href={aboutUrl} class="text-(--color-cream) hover:underline">{t('nav.about')}</a>
                     </li>
                     <li>
-                        <a href="/diagnostico-gratis" class="text-(--color-cream) hover:underline">Revisión gratis</a>
+                        <a href={freeReviewUrl} class="text-(--color-cream) hover:underline">{t('nav.freeReview')}</a>
                     </li>
                     <li>
-                        <a href="/privacy" class="text-(--color-cream) hover:underline">Privacy</a>
+                        <a href={privacyUrl} class="text-(--color-cream) hover:underline">{t('nav.privacy')}</a>
                     </li>
                     <li>
-                        <a href="#" class="text-(--color-cream) hover:underline" data-contact>Contact</a>
+                        <a href="#" class="text-(--color-cream) hover:underline" data-contact>{t('nav.contact')}</a>
                     </li>
                 </ul>
                 <ul class='socials-grid gap-4'>
@@ -43,7 +54,7 @@ import SocialIcon from './SocialIcon.astro';
             </div>
         </div>
         <hr class="my-6 border-default sm:mx-auto lg:my-8" />
-        <span class="block text-sm text-body text-center">© 2026 Renzo Tincopa. Done with love from Inka's sacred valley, Urubamba, Cusco. Peru 🇵🇪.</span>
+        <span class="block text-sm text-body text-center">{t('footer.copyright')}</span>
     </div>
 </footer>
 

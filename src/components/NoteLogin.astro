@@ -1,4 +1,7 @@
 ---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
 interface Props {
     slug: string;
     title: string;
@@ -6,17 +9,20 @@ interface Props {
 }
 
 const { slug, title, error = false } = Astro.props;
+
+const lang = Astro.currentLocale as Lang ?? 'en';
+const t = useTranslations(lang);
 ---
 
 <h1 class='has-dots mb-6 text-center'>{title}</h1>
 
 <div class='note-card note-login'>
-    <p>This note is private. Enter the password to read it.</p>
+    <p>{t('note.private')}</p>
 
     <form method='post' action='/api/notes/unlock'>
         <input type='hidden' name='slug' value={slug} />
 
-        <label for='note-password'>Password</label>
+        <label for='note-password'>{t('note.password')}</label>
         <div class='note-login-field'>
             <input
                 id='note-password'
@@ -30,21 +36,26 @@ const { slug, title, error = false } = Astro.props;
                 type='button'
                 class='badge note-login-toggle'
                 aria-controls='note-password'
-                aria-pressed='false'>Show</button
-            >
+                aria-pressed='false'
+                data-show={t('note.show')}
+                data-hide={t('note.hide')}
+            >{t('note.show')}</button>
         </div>
 
-        {error && <p class='note-login-error' role='alert'>Wrong password. Try again.</p>}
+        {error && <p class='note-login-error' role='alert'>{t('note.error')}</p>}
 
         <div class='btn-wrap'>
             <div class='shadow'></div>
-            <button type='submit' class='face'>Open note</button>
+            <button type='submit' class='face'>{t('note.open')}</button>
         </div>
     </form>
 </div>
 
 <script>
     document.querySelectorAll<HTMLButtonElement>('.note-login-toggle').forEach((button) => {
+        const showText = button.dataset.show ?? 'Show';
+        const hideText = button.dataset.hide ?? 'Hide';
+
         button.addEventListener('click', () => {
             const input = document.getElementById(
                 button.getAttribute('aria-controls') ?? '',
@@ -54,7 +65,7 @@ const { slug, title, error = false } = Astro.props;
             const showing = input.type === 'text';
             input.type = showing ? 'password' : 'text';
             button.setAttribute('aria-pressed', String(!showing));
-            button.textContent = showing ? 'Show' : 'Hide';
+            button.textContent = showing ? showText : hideText;
         });
     });
 </script>

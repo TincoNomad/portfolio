@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Clouds from '../../components/Clouds.astro';
+import NotFound from '../../components/NotFound.astro';
+---
+
+<Layout
+    title='404 — Página no encontrada · Renzo Tincopa'
+    description='Esta página no existe. Vuelve al portfolio.'
+>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 justify-center py-16'>
+            <NotFound />
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>

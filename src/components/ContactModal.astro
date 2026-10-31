@@ -1,9 +1,23 @@
 ---
-const PRIORITIES = ['Good', 'Fast', 'Cheap'];
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+const lang = Astro.currentLocale as Lang ?? 'en';
+const t = useTranslations(lang);
+
+const privacyUrl = getRelativeLocaleUrl(lang, '/privacy');
+const privacyLabel = lang === 'es' ? 'Política de privacidad' : 'Privacy Policy';
+
+const PRIORITIES = [
+  { value: 'Good', label: t('contact.prio.good') },
+  { value: 'Fast', label: t('contact.prio.fast') },
+  { value: 'Cheap', label: t('contact.prio.cheap') },
+];
 ---
 
 <dialog id='contact-modal' class='contact-modal bubble-shadow-right'>
-    <button type='button' class='contact-close' aria-label='Close' data-contact-close>×</button>
+    <button type='button' class='contact-close' aria-label={t('contact.close')} data-contact-close>×</button>
 
     <div class='contact-body'>
     <form class='contact-form' action='https://api.web3forms.com/submit' method='POST'>
@@ -11,67 +25,65 @@ const PRIORITIES = ['Good', 'Fast', 'Cheap'];
         <input type='hidden' name='subject' value='New quote request — Portfolio' />
         <input type='hidden' name='from_name' value='Portfolio Contact' />
         <input type='checkbox' name='botcheck' style='display:none' tabindex='-1' autocomplete='off' />
-        <h2 class='ps-2 has-dots'>Let's build together</h2>
-        <p>Tell me what you want to build. Two paths:</p>
-        <p>A Telegram message — we set up a 30-minute call:</p>
+        <h2 class='ps-2 has-dots'>{t('contact.title')}</h2>
+        <p>{t('contact.intro')}</p>
+        <p>{t('contact.telegram')}</p>
         <div class='btn-wrap'>
             <div class='shadow'></div>
-            <a class='face' href='https://t.me/tinconomad' target='_blank' rel='noopener noreferrer'>Message me on Telegram</a>
+            <a class='face' href='https://t.me/tinconomad' target='_blank' rel='noopener noreferrer'>{t('contact.telegramBtn')}</a>
         </div>
-        <p>Or send me an email — fill this out and I'll reply with scope + quote:</p>
+        <p>{t('contact.email')}</p>
         <label>
-            Name
+            {t('contact.name')}
             <input type='text' name='name' required autocomplete='name' />
         </label>
         <label>
-            Email or Telegram
+            {t('contact.contact')}
             <input type='text' name='contact' required />
         </label>
         <div class='form-row'>
             <label>
-                Project type
+                {t('contact.type')}
                 <select name='type' required>
-                    <option value=''>Select one…</option>
-                    <option value='backend'>Backend / API</option>
-                    <option value='automation'>Automation / AI</option>
-                    <option value='payments'>Payments / Web3</option>
-                    <option value='other'>Other</option>
+                    <option value=''>{t('contact.type.placeholder')}</option>
+                    <option value='backend'>{t('contact.type.backend')}</option>
+                    <option value='automation'>{t('contact.type.automation')}</option>
+                    <option value='payments'>{t('contact.type.payments')}</option>
+                    <option value='other'>{t('contact.type.other')}</option>
                 </select>
             </label>
             <label>
-                Estimated budget
+                {t('contact.budget')}
                 <select name='budget' required>
-                    <option value=''>Select one…</option>
-                    <option value='<1k'>Less than $1k</option>
-                    <option value='1-5k'>$1k – $5k</option>
-                    <option value='5-15k'>$5k – $15k</option>
-                    <option value='15k+'>More than $15k</option>
-                    <option value='unsure'>Not sure yet</option>
+                    <option value=''>{t('contact.budget.placeholder')}</option>
+                    <option value='<1k'>{t('contact.budget.lt1k')}</option>
+                    <option value='1-5k'>{t('contact.budget.1to5k')}</option>
+                    <option value='5-15k'>{t('contact.budget.5to15k')}</option>
+                    <option value='15k+'>{t('contact.budget.15kplus')}</option>
+                    <option value='unsure'>{t('contact.budget.unsure')}</option>
                 </select>
             </label>
         </div>
         <div class='prioridades-row'>
-            <span>Priorities</span>
-            <fieldset class='pick-two' aria-label='Priorities — pick two'>
-                {PRIORITIES.map((v) => (
+            <span>{t('contact.priorities')}</span>
+            <fieldset class='pick-two' aria-label={t('contact.priorities.hint')}>
+                {PRIORITIES.map(({ value, label }) => (
                     <label class='switch'>
-                        <input type='checkbox' name='prio' value={v} />
+                        <input type='checkbox' name='prio' value={value} />
                         <span class='track'><span class='knob'></span></span>
-                        {v}
+                        {label}
                     </label>
                 ))}
             </fieldset>
         </div>
         <label>
-            What do you want to achieve?
-            <textarea name='message' rows='4' required placeholder='Describe your project, problem, or idea...'></textarea>
+            {t('contact.message')}
+            <textarea name='message' rows='4' required placeholder={t('contact.message.placeholder')}></textarea>
         </label>
-        <p class='privacy-note'>
-            I use your data only to reply. <a href='/privacy'>Privacy Policy</a>.
-        </p>
+        <p class='privacy-note' set:html={t('contact.privacy').replace('[privacy]', `<a href='${privacyUrl}'>${privacyLabel}</a>`)} />
         <div class='btn-wrap'>
             <div class='shadow'></div>
-            <button type='submit' class='face'>Send by email</button>
+            <button type='submit' class='face' data-sending={t('contact.sending')} data-sent={t('contact.sent')} data-error={t('contact.error')} data-connection-error={t('contact.connectionError')}>{t('contact.submit')}</button>
         </div>
     </form>
     </div>
@@ -322,13 +334,17 @@ const PRIORITIES = ['Good', 'Fast', 'Cheap'];
     e.preventDefault();
     const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const original = btn?.textContent ?? '';
+    const sending = btn?.dataset.sending ?? 'Sending...';
+    const sent = btn?.dataset.sent ?? 'Sent ✓';
+    const errorText = btn?.dataset.error ?? 'Error, try again';
+    const connectionError = btn?.dataset.connectionError ?? 'Connection error';
 
     const data = new FormData(form);
     const contact = String(data.get('contact') ?? '');
     if (contact.includes('@')) data.set('replyto', contact);
 
     if (btn) {
-      btn.textContent = 'Sending...';
+      btn.textContent = sending;
       btn.disabled = true;
     }
 
@@ -338,19 +354,19 @@ const PRIORITIES = ['Good', 'Fast', 'Cheap'];
 
       if (json.success) {
         if (btn) {
-          btn.textContent = 'Sent ✓';
+          btn.textContent = sent;
           btn.style.background = '#16a34a';
         }
         form.reset();
         queue = [];
         setTimeout(() => modal?.close(), 1500);
       } else if (btn) {
-        btn.textContent = 'Error, try again';
+        btn.textContent = errorText;
         btn.style.background = '#dc2626';
       }
     } catch {
       if (btn) {
-        btn.textContent = 'Connection error';
+        btn.textContent = connectionError;
         btn.style.background = '#dc2626';
       }
     }

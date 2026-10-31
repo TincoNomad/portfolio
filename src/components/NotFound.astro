@@ -1,17 +1,22 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+const lang = Astro.currentLocale as Lang ?? 'en';
+const t = useTranslations(lang);
 ---
 
 <div class='not-found'>
-    <h1 class='not-found-code has-dots text-center'>404</h1>
+    <h1 class='not-found-code has-dots text-center'>{t('404.title')}</h1>
 
     <p class='bubble bubble-shadow-right text-center'>
-        This page doesn't exist. Either the link is broken or it moved somewhere else.
-        Nothing is lost — let's get you back.
+        {t('404.text')}
     </p>
 
     <div class='btn-wrap'>
         <div class='shadow'></div>
-        <a class='face' href='/'>Back to home</a>
+        <a class='face' href={getRelativeLocaleUrl(lang, '/')}>{t('404.home')}</a>
     </div>
 </div>
 

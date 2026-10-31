@@ -8,6 +8,16 @@ export default defineConfig({
   // passthrough: no usamos <Image>, así no hace falta el binding IMAGES al desplegar
   adapter: cloudflare({ imageService: "passthrough" }),
   session: false,
+  i18n: {
+    locales: ["en", "es"],
+    defaultLocale: "en",
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  redirects: {
+    "/diagnostico-gratis": "/es/diagnostico-gratis",
+  },
   vite: {
     plugins: [tailwindcss()],
   },

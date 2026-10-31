@@ -1,37 +1,38 @@
 ---
 import SocialIcon from './SocialIcon.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+const lang = Astro.currentLocale as Lang ?? 'en';
+const t = useTranslations(lang);
 ---
 
 <section class='min-h-dvh scroll-mt-20 relative' id='home'>
     <div class='grid md:grid-cols-2 items-center w-full md:max-w-6xl md:mx-auto mb-30 gap-8 relative z-10'>
         <div class='flex flex-col items-center md:items-start gap-4 md:col-start-2 md:row-start-1 text-center md:text-start'>
             <h1 class='has-dots'>Renzo Tincopa</h1>
-            <h2>Backend Blacksmith</h2>
-            <h2 class='bubble bubble-shadow-right mb-8 max-w-[clamp(254px,36.43vw,437px)]! text-[clamp(1.125rem,2.59vw,1.29rem)]!'>You tell me what you're trying to achieve.<br/>I design the system and build it</h2>
+            <h2>{t('hero.tagline')}</h2>
+            <h2 class='bubble bubble-shadow-right mb-8 max-w-[clamp(254px,36.43vw,437px)]! text-[clamp(1.125rem,2.59vw,1.29rem)]!'>{t('hero.lead').split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}</h2>
             <div class='flex flex-col md:flex-row flex-wrap gap-4 items-center justify-center md:justify-start'>
                 <div class='btn-wrap'>
                     <div class='shadow'></div>
-                    <a class='face hero-cta' href='#projects'>Check my builds</a>
+                    <a class='face hero-cta' href='#projects'>{t('hero.cta.work')}</a>
                 </div>
                 <div class='btn-wrap'>
                     <div class='shadow'></div>
-                    <a class='face hero-cta' href='#' data-contact>Let's build together</a>
-                </div>
-                <div class='btn-wrap'>
-                    <div class='shadow'></div>
-                    <a class='face hero-cta' href='/diagnostico-gratis'>Revisión gratis</a>
+                    <a class='face hero-cta' href='#' data-contact>{t('hero.cta.contact')}</a>
                 </div>
             </div>
             <div class='flex flex-col items-center md:items-start gap-2 border-[3px] border-(--color-black) rounded-(--radius-lg) p-4'>
                 <ul class='gap-2'>
-                    <li class='hero-label'>What I build</li>
-                    <li class='tag'>Distributed Systems</li>
-                    <li class='tag'>AI</li>
+                    <li class='hero-label'>{t('hero.buildLabel')}</li>
+                    <li class='tag'>{t('hero.tag.distributed')}</li>
+                    <li class='tag'>{t('hero.tag.ai')}</li>
                 </ul>
                 <ul class='gap-2'>
-                    <li class='tag'>Backends</li>
-                    <li class='tag'>Automation</li>
-                    <li class='tag'>Payments</li>
+                    <li class='tag'>{t('hero.tag.backends')}</li>
+                    <li class='tag'>{t('hero.tag.automation')}</li>
+                    <li class='tag'>{t('hero.tag.payments')}</li>
                 </ul>
             </div>
         </div>

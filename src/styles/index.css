@@ -65,9 +65,9 @@ header::before {
 
 header.scrolled::before,
 header.nav-open::before {
-  background: rgba(128, 128, 128, 0.2); /* cream con transparencia */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari */
+  background: rgba(60, 60, 60, 0.55);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(253, 246, 227, 0.12);
 }
 
 .nav-link.active {

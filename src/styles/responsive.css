@@ -13,6 +13,12 @@ header {
   header:has(.nav-menu.open)::before {
     height: calc(100% + var(--menu-h, 0px));
   }
+
+  /* El CTA en español es más largo; lo achicamos para no empujar la hamburguesa */
+  html[lang='es'] header .btn-wrap .face {
+    font-size: clamp(1.1rem, 5.1vw, 1.35rem);
+    padding-inline: 0.8rem;
+  }
 }
 
 .nav-toggle {
@@ -211,7 +217,7 @@ header {
 }
 
 /* Enlaces del footer: 3 arriba y 2 abajo, cada fila centrada */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 770px) {
   .footer-links {
     width: 100%;
     justify-content: center;
