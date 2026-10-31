@@ -209,3 +209,28 @@ header {
     font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   }
 }
+
+/* Enlaces del footer: 3 arriba y 2 abajo, cada fila centrada */
+@media screen and (max-width: 767px) {
+  .footer-links {
+    width: 100%;
+    justify-content: center;
+    column-gap: 0;
+    row-gap: 1rem;
+  }
+
+  .footer-links > li {
+    flex: 0 0 33.333%;
+    text-align: center;
+  }
+}
+
+.more-links {
+  max-width: clamp(336px, 48vw, 576px);
+}
+
+@media screen and (min-width: 1024px) {
+  .more-links {
+    max-width: clamp(364px, 52vw, 624px);
+  }
+}

@@ -43,14 +43,12 @@ const personSchema = JSON.stringify({
 		<script type="application/ld+json" set:html={personSchema} />
 	</head>
     <body>
-        <main > 
-            <!--div class='bg-[#1e3a8a] !w-full'-->
-                <Header />
-            <!--/div-->
-                <slot />
-            <Footer />
-            <ContactModal />
-		</main>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+        <ContactModal />
 	</body>
 </html>
 
