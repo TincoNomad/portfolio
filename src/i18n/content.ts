@@ -18,70 +18,86 @@ export interface Review {
 export const projects: Record<Lang, Project[]> = {
   en: [
     {
-      title: 'Chasqui Server',
+      title: 'yachay',
       description:
-        'Rust backend with Actix-web for real-time communication via WebSocket. Includes JWT authentication with Wallet Auth (Web3), SurrealDB integration, and a hybrid REST/WebSocket architecture.',
-      github: 'https://github.com/wiracocha-labs/chasqui-server',
-      image: '/projects/chasqui_server_sneepet.webp',
-      tags: ['rust', 'actix-web', 'surrealdb', 'websocket', 'jwt'],
+        'Rust CLI that tells you which local AI model fits your hardware. Reads RAM, CPU and OS, then picks from a curated database of 15 models. Prebuilt binaries for five platforms.',
+      github: 'https://github.com/wiracocha-labs/yachay',
+      image: '/projects/yachay_sneepet.webp',
+      tags: ['rust', 'cli', 'local-ai', 'llm'],
     },
     {
-      title: 'actix-admin',
+      title: 'actix-crud-admin',
       description:
-        'Rust library that auto-generates CRUD admin panels for Actix-web 4. Includes session authentication, responsive UI, search, pagination, and form validation.',
-      github: 'https://github.com/TincoNomad/actix-admin',
+        'Rust library that generates CRUD admin panels for Actix-web 4 from a resource registry, with pluggable auth. Published on crates.io with docs, integration tests and a Diesel example.',
+      github: 'https://github.com/TincoNomad/actix-crud-admin',
       image: '/projects/actix_admin_sneepet.webp',
-      tags: ['rust', 'actix-web', 'admin-panel', 'crud'],
+      tags: ['rust', 'actix-web', 'crates-io', 'crud'],
     },
     {
-      title: 'pretty-curl (pcurl)',
+      title: 'pcurl',
       description:
-        'HTTP pretty-printer for the terminal. Auto-formats JSON, aligns headers, and colors curl responses. Includes an interactive WebSocket client with colored message prefixes.',
+        'HTTP pretty-printer for the terminal. Colors the status, aligns headers and indents JSON, so you stop reading raw curl output. Also runs plain-text collections and an MCP client.',
       github: 'https://github.com/TincoNomad/pretty-curl',
       image: '/projects/pretty_curl_sneepet.webp',
       tags: ['rust', 'cli', 'http', 'websocket', 'terminal'],
     },
     {
-      title: 'OpenCode Warp Bridge',
+      title: 'grafik',
       description:
-        'Plugin + CLI bridge that sends terminal output from Warp straight into your OpenCode session as context. Enables seamless copy-paste from terminal to AI prompts.',
-      github: 'https://github.com/TincoNomad/opencode-warp-bridge',
-      image: '/projects/opencode_warp_sneepet.webp',
-      tags: ['typescript', 'plugin', 'opencode', 'warp', 'cli'],
+        'Renders HTML into PNG carousels and vertical video with Chrome and ffmpeg. No dependencies, no framework, one file defines the video. Includes a pipeline that cuts a long recording into social clips.',
+      github: 'https://github.com/TincoNomad/grafik',
+      image: '/projects/grafik_sneepet.webp',
+      tags: ['typescript', 'bun', 'ffmpeg', 'video'],
+    },
+    {
+      title: 'Chasqui Server',
+      description:
+        'Rust backend with Actix-web for real-time communication via WebSocket. JWT and wallet authentication, SurrealDB integration, and a hybrid REST/WebSocket architecture.',
+      github: 'https://github.com/wiracocha-labs/chasqui-server',
+      image: '/projects/chasqui_server_sneepet.webp',
+      tags: ['rust', 'actix-web', 'surrealdb', 'websocket', 'jwt'],
     },
   ],
   es: [
     {
-      title: 'Chasqui Server',
+      title: 'yachay',
       description:
-        'Backend en Rust con Actix-web para comunicación real-time vía WebSocket. Incluye autenticación JWT con Wallet Auth (Web3), integración con SurrealDB y arquitectura híbrida REST/WebSocket.',
-      github: 'https://github.com/wiracocha-labs/chasqui-server',
-      image: '/projects/chasqui_server_sneepet.webp',
-      tags: ['rust', 'actix-web', 'surrealdb', 'websocket', 'jwt'],
+        'CLI en Rust que te dice qué modelo de IA local corre en tu máquina. Lee RAM, CPU y sistema, y elige entre una base curada de 15 modelos. Binarios para cinco plataformas.',
+      github: 'https://github.com/wiracocha-labs/yachay',
+      image: '/projects/yachay_sneepet.webp',
+      tags: ['rust', 'cli', 'ia-local', 'llm'],
     },
     {
-      title: 'actix-admin',
+      title: 'actix-crud-admin',
       description:
-        'Biblioteca Rust que genera automáticamente paneles de administración CRUD para Actix-web 4. Incluye autenticación por sesiones, UI responsive, búsqueda, paginación y validación de formularios.',
-      github: 'https://github.com/TincoNomad/actix-admin',
+        'Biblioteca Rust que genera paneles CRUD para Actix-web 4 desde un registro de recursos, con auth conectable. Publicada en crates.io con docs, tests de integración y un ejemplo con Diesel.',
+      github: 'https://github.com/TincoNomad/actix-crud-admin',
       image: '/projects/actix_admin_sneepet.webp',
-      tags: ['rust', 'actix-web', 'admin-panel', 'crud'],
+      tags: ['rust', 'actix-web', 'crates-io', 'crud'],
     },
     {
-      title: 'pretty-curl (pcurl)',
+      title: 'pcurl',
       description:
-        'HTTP pretty-printer para terminal. Formatea automáticamente JSON, alinea headers y agrega colores a respuestas de curl. Incluye cliente WebSocket interactivo con prefijos de mensajes coloreados.',
+        'Pretty-printer HTTP para la terminal. Colorea el status, alinea los headers e indenta el JSON, para no leer más la salida cruda de curl. También corre colecciones en texto plano y un cliente MCP.',
       github: 'https://github.com/TincoNomad/pretty-curl',
       image: '/projects/pretty_curl_sneepet.webp',
       tags: ['rust', 'cli', 'http', 'websocket', 'terminal'],
     },
     {
-      title: 'OpenCode Warp Bridge',
+      title: 'grafik',
       description:
-        'Plugin + CLI bridge que envía output de terminal desde Warp directamente a tu sesión de OpenCode como contexto. Permite copiar-pegar seamless de terminal a prompts de IA.',
-      github: 'https://github.com/TincoNomad/opencode-warp-bridge',
-      image: '/projects/opencode_warp_sneepet.webp',
-      tags: ['typescript', 'plugin', 'opencode', 'warp', 'cli'],
+        'Convierte HTML en carruseles PNG y video vertical con Chrome y ffmpeg. Sin dependencias, sin framework, un archivo define el video. Incluye el pipeline que corta una grabación larga en clips.',
+      github: 'https://github.com/TincoNomad/grafik',
+      image: '/projects/grafik_sneepet.webp',
+      tags: ['typescript', 'bun', 'ffmpeg', 'video'],
+    },
+    {
+      title: 'Chasqui Server',
+      description:
+        'Backend en Rust con Actix-web para comunicación real-time vía WebSocket. Autenticación JWT y por wallet, integración con SurrealDB y arquitectura híbrida REST/WebSocket.',
+      github: 'https://github.com/wiracocha-labs/chasqui-server',
+      image: '/projects/chasqui_server_sneepet.webp',
+      tags: ['rust', 'actix-web', 'surrealdb', 'websocket', 'jwt'],
     },
   ],
 };
