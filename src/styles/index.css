@@ -803,3 +803,22 @@ html:has(.contact-modal[open]) {
     radial-gradient(1px 1px at 55% 95%, var(--color-cream), transparent);
   background-size: 100% 100%;
 }
+
+/* Tercer CTA del hero: más chico y sin sombra, para que no compita con los otros dos */
+.cv-cta {
+  display: inline-block;
+  padding: clamp(0.25rem, 0.9vw, 0.45rem) clamp(0.5rem, 1.4vw, 0.8rem);
+  border: var(--border-w) solid var(--color-black);
+  border-radius: var(--radius-md);
+  background: var(--color-cream);
+  color: var(--color-black);
+  font-family: var(--font-heading);
+  font-size: clamp(0.8125rem, 1.8vw, 1.05rem);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: transform 0.1s;
+}
+
+.cv-cta:hover {
+  transform: translate(1px, 1px);
+}

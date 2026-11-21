@@ -1,0 +1,370 @@
+---
+// El CV vive fuera del Layout a propósito: sin header, sin footer, sin nubes.
+// Al imprimir tiene que salir una hoja limpia, y un ATS tiene que poder leerlo.
+const title = 'Renzo Tincopa — CV';
+const description =
+  'Rust backend engineer. Backends, CLIs and developer tools, shipped.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body>
+    <div class="actions no-print">
+      <a class="btn" href="/cv.pdf" download>Download PDF</a>
+      <a class="back" href="/">&larr; Back to the site</a>
+    </div>
+
+    <main>
+      <header>
+        <h1>Renzo Tincopa Barreto</h1>
+        <p class="role">Rust backend engineer &middot; Remote &middot; UTC-5</p>
+        <p class="contact">
+          <a href="mailto:renzotincopa@icloud.com">renzotincopa@icloud.com</a>
+          <span>&middot;</span>
+          <a href="https://github.com/TincoNomad">github.com/TincoNomad</a>
+          <span>&middot;</span>
+          <a href="https://www.linkedin.com/in/tinconomad/">linkedin.com/in/tinconomad</a>
+          <span>&middot;</span>
+          <a href="https://wiracochalabs.com">wiracochalabs.com</a>
+        </p>
+      </header>
+
+      <section>
+        <h2>Summary</h2>
+        <p>
+          I write Rust backends, CLIs and developer tools, and I ship them: four
+          projects published, one crate on crates.io, prebuilt binaries for
+          macOS, Linux and Windows. Before Rust I shipped Django backends as a
+          freelancer for years, which is where I learned that a system is done
+          when a client can use it, not when it compiles.
+        </p>
+      </section>
+
+      <section>
+        <h2>Selected work</h2>
+
+        <article class="item">
+          <h3>
+            yachay
+            <a href="https://github.com/wiracocha-labs/yachay">github.com/wiracocha-labs/yachay</a>
+          </h3>
+          <p>
+            Rust CLI that tells you which local AI model fits your hardware.
+            Reads RAM, CPU and OS, then picks from a curated database of 15
+            models. Prebuilt binaries for five platforms.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>
+            actix-crud-admin
+            <a href="https://crates.io/crates/actix-crud-admin">crates.io/crates/actix-crud-admin</a>
+          </h3>
+          <p>
+            Library that generates CRUD admin panels for Actix-web 4 from a
+            resource registry, with pluggable auth. Published with docs,
+            integration tests and a Diesel example.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>
+            pcurl
+            <a href="https://github.com/TincoNomad/pretty-curl">github.com/TincoNomad/pretty-curl</a>
+          </h3>
+          <p>
+            HTTP pretty-printer for the terminal: colored status, aligned
+            headers, indented JSON. Also runs plain-text collections and an MCP
+            client. Releases for five platforms.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>
+            grafik
+            <a href="https://github.com/TincoNomad/grafik">github.com/TincoNomad/grafik</a>
+          </h3>
+          <p>
+            Renders HTML into PNG carousels and vertical video with Chrome and
+            ffmpeg. No dependencies, no framework. Includes a pipeline that cuts
+            a long recording into social clips.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Professional experience</h2>
+
+        <article class="item">
+          <h3>Freelance &mdash; Backend developer</h3>
+          <p class="meta">Remote &middot; Jan 2022 &ndash; Present</p>
+          <ul>
+            <li>
+              Built and shipped a full-stack platform for a fitness studio: auth
+              with encrypted credentials and WhatsApp/Twilio identity
+              verification, hierarchical roles for schools and teachers, bulk
+              class import from CSV, and content management from a custom Django
+              admin.
+            </li>
+            <li>
+              Delivered backend integrations (Meta, Google, OpenAI APIs),
+              internal tooling and frontend work across clients.
+            </li>
+            <li>
+              Since 2025 the primary stack is Rust: Actix-web, tokio, SQLx,
+              SurrealDB.
+            </li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <h3>Coini &mdash; Blockchain developer</h3>
+          <p class="meta">Remote &middot; Sep 2023 &ndash; Jun 2024</p>
+          <ul>
+            <li>
+              Designed and integrated Solidity contracts, connecting on-chain
+              logic with backend services.
+            </li>
+            <li>
+              Turned customer requirements into technical work across the
+              backend and blockchain layers.
+            </li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <h3>Platzi &mdash; Student Advocate</h3>
+          <p class="meta">Remote &middot; Feb 2022 &ndash; Jul 2023</p>
+          <ul>
+            <li>
+              Ran daily support for the student community across Discord, email
+              and events.
+            </li>
+            <li>
+              Built and led onboarding sessions, and turned community feedback
+              into prioritised reports for the dev teams.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section>
+        <h2>Stack</h2>
+        <p>
+          Rust (Actix-web, tokio, SQLx, clap, libp2p) &middot; PostgreSQL
+          &middot; SurrealDB &middot; Supabase. Python and Django for prior and
+          current client work &middot; Docker &middot; GitHub Actions &middot;
+          TypeScript when the frontend needs it.
+        </p>
+        <p class="meta">
+          Integrations: Anthropic API, OpenAI API, MCP, Twilio, SendGrid, Google
+          APIs.
+        </p>
+      </section>
+
+      <section>
+        <h2>Languages</h2>
+        <p>
+          Spanish (native) &middot; English (fluent) &middot; Portuguese (fluent)
+          &middot; French (basic)
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --ink: #111111;
+    --muted: #555555;
+    --rule: #dddddd;
+    --paper: #ffffff;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f4f4f2;
+  }
+
+  body {
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--paper);
+    padding: 56px 56px 64px;
+  }
+
+  header {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 27px;
+    letter-spacing: -0.01em;
+  }
+
+  .role {
+    margin: 4px 0 10px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .contact {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .contact a,
+  .contact span {
+    margin-right: 6px;
+  }
+
+  section {
+    margin-top: 10px;
+  }
+
+  h2 {
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 5px;
+  }
+
+  p {
+    margin: 0 0 8px;
+  }
+
+  .item {
+    margin-bottom: 8px;
+  }
+
+  .item:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  h3 a {
+    font-weight: 400;
+    font-size: 12.5px;
+    margin-left: 8px;
+    color: var(--muted);
+  }
+
+  .meta {
+    margin: 1px 0 6px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  ul {
+    margin: 4px 0 0;
+    padding-left: 18px;
+  }
+
+  li {
+    margin-bottom: 2px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .actions {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 56px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+
+  .btn:hover {
+    opacity: 0.85;
+  }
+
+  .back {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  @media print {
+    html,
+    body {
+      background: #fff;
+    }
+
+    body {
+      font-size: 9.9pt;
+      line-height: 1.38;
+    }
+
+    main {
+      max-width: none;
+      padding: 0;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    section,
+    /* Solo los bloques no se parten: una sección sí puede seguir en la otra hoja */
+    .item {
+      break-inside: avoid;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+</style>
