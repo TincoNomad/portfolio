@@ -825,11 +825,11 @@ html:has(.contact-modal[open]) {
 
 /* Los tres CTA tienen que entrar en el ancho de la burbuja, no pasarla */
 #home .hero-cta {
-  font-size: clamp(0.9rem, 2vw, 1.28rem);
+  font-size: clamp(1.05rem, 2.35vw, 1.51rem);
 }
 
 #home .cv-cta {
-  font-size: clamp(0.78rem, 1.7vw, 1rem);
+  font-size: clamp(0.92rem, 2vw, 1.18rem);
 }
 
 /* Burbuja, CTA y caja de tags comparten ancho para que el borde derecho coincida */
