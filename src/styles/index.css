@@ -831,3 +831,9 @@ html:has(.contact-modal[open]) {
 #home .cv-cta {
   font-size: clamp(0.78rem, 1.7vw, 1rem);
 }
+
+/* Burbuja, CTA y caja de tags comparten ancho para que el borde derecho coincida */
+#home .hero-block {
+  width: clamp(254px, 36.43vw, 437px);
+  max-width: clamp(254px, 36.43vw, 437px);
+}
