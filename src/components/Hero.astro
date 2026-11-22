@@ -13,7 +13,7 @@ const t = useTranslations(lang);
             <h1 class='has-dots'>Renzo Tincopa</h1>
             <h2>{t('hero.tagline')}</h2>
             <h2 class='bubble bubble-shadow-right mb-8 max-w-[clamp(254px,36.43vw,437px)]! text-[clamp(1.125rem,2.59vw,1.29rem)]!'>{t('hero.lead').split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}</h2>
-            <div class='flex flex-col md:flex-row flex-wrap gap-4 items-center justify-center md:justify-start'>
+            <div class='flex flex-col md:flex-row flex-wrap gap-6 items-center justify-center md:justify-start'>
                 <div class='btn-wrap'>
                     <div class='shadow'></div>
                     <a class='face hero-cta' href='#projects'>{t('hero.cta.work')}</a>

@@ -822,3 +822,12 @@ html:has(.contact-modal[open]) {
 .cv-cta:hover {
   transform: translate(1px, 1px);
 }
+
+/* Los tres CTA tienen que entrar en el ancho de la burbuja, no pasarla */
+#home .hero-cta {
+  font-size: clamp(0.9rem, 2vw, 1.28rem);
+}
+
+#home .cv-cta {
+  font-size: clamp(0.78rem, 1.7vw, 1rem);
+}
