@@ -837,3 +837,60 @@ html:has(.contact-modal[open]) {
   width: clamp(254px, 36.43vw, 450px);
   max-width: clamp(254px, 36.43vw, 450px);
 }
+
+/* Tablet (768–1023): los CTA salen de la columna de texto y van bajo el video.
+   En desktop vuelven a su lugar; en móvil el flujo normal ya los deja abajo. */
+@media (min-width: 768px) and (max-width: 1179px) {
+  #home .hero-text {
+    display: contents;
+  }
+
+  #home .hero-head {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  #home .hero-tags {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: start;
+  }
+
+  #home .hero-ctas {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    /* el ancho del video, no el clamp de la columna de texto */
+    width: 100%;
+    max-width: 100%;
+    gap: 0.5rem;
+  }
+
+  #home .hero-ctas .hero-cta {
+    font-size: clamp(0.92rem, 2.05vw, 1.43rem);
+  }
+
+  #home .hero-ctas .cv-cta {
+    font-size: clamp(0.8rem, 1.75vw, 1.11rem);
+  }
+
+  /* la columna de media se abre: video y redes pasan a ser ítems del grid */
+  #home .hero-media {
+    display: contents;
+  }
+
+  #home .hero-video {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+  }
+
+  #home .hero-socials {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: end;
+    align-self: start;
+    margin-top: 0;
+  }
+}
