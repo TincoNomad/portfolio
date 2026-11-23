@@ -746,7 +746,9 @@ html:has(.contact-modal[open]) {
 
 .review-bubble .badge {
   align-self: flex-start;
-  margin-top: 0.25rem;
+  /* Empuja el botón al fondo: todas las tarjetas lo alinean en la misma altura,
+     tengan el texto largo o corto. */
+  margin-top: auto;
 }
 
 .project-image {
@@ -914,12 +916,14 @@ html:has(.contact-modal[open]) {
   }
 
   #home .hero-video {
-    order: 2;
+    order: 3;
     justify-self: center;
   }
 
   #home .hero-lead {
-    order: 3;
+    order: 2;
+    /* el mb-8 de la burbuja se suma al gap del grid y deja un hueco doble */
+    margin-bottom: 0;
     justify-self: center;
   }
 
@@ -987,7 +991,7 @@ html:has(.contact-modal[open]) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.6em;
+  min-height: 3.33em;
 }
 
 .project-actions .badge,
@@ -995,5 +999,5 @@ html:has(.contact-modal[open]) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.8em;
+  min-height: 3.5em;
 }
