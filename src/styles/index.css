@@ -980,3 +980,20 @@ html:has(.contact-modal[open]) {
     text-align: center;
   }
 }
+
+/* Botones 25% más altos: el alto se escala con la tipografía, no con píxeles fijos */
+#home .hero-cta,
+#home .cv-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6em;
+}
+
+.project-actions .badge,
+.review-bubble .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8em;
+}
