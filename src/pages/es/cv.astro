@@ -1,0 +1,183 @@
+---
+import '../../styles/cv.css';
+
+// Misma página que /cv, en español. Los estilos viven en src/styles/cv.css
+// para no mantener dos copias.
+const title = 'Renzo Tincopa — CV';
+const description =
+  'Ingeniero de backend en Rust. Backends, CLIs y herramientas, publicados.';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body>
+    <div class="actions no-print">
+      <a class="btn" href="/es/cv.pdf" download>Descargar PDF</a>
+      <a class="back" href="/es/">&larr; Volver al sitio</a>
+    </div>
+
+    <main>
+      <header>
+        <h1>Renzo Tincopa Barreto</h1>
+        <p class="role">Ingeniero de backend en Rust &middot; Remoto &middot; UTC-5</p>
+        <p class="contact">
+          <a href="mailto:renzotincopa@icloud.com">renzotincopa@icloud.com</a>
+          <span>&middot;</span>
+          <a href="https://github.com/TincoNomad">github.com/TincoNomad</a>
+          <span>&middot;</span>
+          <a href="https://www.linkedin.com/in/tinconomad/">linkedin.com/in/tinconomad</a>
+          <span>&middot;</span>
+          <a href="https://wiracochalabs.com">wiracochalabs.com</a>
+        </p>
+      </header>
+
+      <section>
+        <h2>Resumen</h2>
+        <p>
+          Escribo backends, CLIs y herramientas en Rust, y los publico: cuatro
+          proyectos, un crate en crates.io y binarios para macOS, Linux y
+          Windows. Antes de Rust entregué backends en Django como freelance,
+          donde aprendí que un sistema está terminado cuando el cliente lo puede
+          usar, no cuando compila.
+        </p>
+      </section>
+
+      <section>
+        <h2>Trabajo seleccionado</h2>
+
+        <article class="item">
+          <h3>
+            yachay
+            <a href="https://github.com/wiracocha-labs/yachay">github.com/wiracocha-labs/yachay</a>
+          </h3>
+          <p>
+            CLI en Rust que te dice qué modelo de IA local corre en tu máquina.
+            Lee RAM, CPU y sistema operativo, y elige entre una base curada de 15
+            modelos. Binarios para cinco plataformas.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>
+            actix-crud-admin
+            <a href="https://crates.io/crates/actix-crud-admin">crates.io/crates/actix-crud-admin</a>
+          </h3>
+          <p>
+            Biblioteca que genera paneles CRUD para Actix-web 4 desde un registro
+            de recursos, con auth conectable. Publicada con documentación, tests
+            de integración y un ejemplo con Diesel.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>
+            pcurl
+            <a href="https://github.com/TincoNomad/pretty-curl">github.com/TincoNomad/pretty-curl</a>
+          </h3>
+          <p>
+            Pretty-printer HTTP para la terminal: status con color, headers
+            alineados y JSON indentado. También corre colecciones en texto plano y
+            un cliente MCP. Releases para cinco plataformas.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>
+            grafik
+            <a href="https://github.com/TincoNomad/grafik">github.com/TincoNomad/grafik</a>
+          </h3>
+          <p>
+            Convierte HTML en carruseles PNG y video vertical con Chrome y ffmpeg.
+            Sin dependencias, sin framework, un archivo define el video. Incluye
+            el pipeline que corta una grabación larga en clips.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Experiencia profesional</h2>
+
+        <article class="item">
+          <h3>Freelance &mdash; Desarrollador backend</h3>
+          <p class="meta">Remoto &middot; ene 2022 &ndash; presente</p>
+          <ul>
+            <li>
+              Construí y puse en producción una plataforma para un estudio de
+              danza: auth con credenciales cifradas y verificación por
+              WhatsApp/Twilio, roles jerárquicos para escuelas y profesores,
+              import de clases desde CSV y contenido editable desde un panel de
+              Django propio.
+            </li>
+            <li>
+              Entregué integraciones de backend (Meta, Google, OpenAI),
+              herramientas internas y frontend para distintos clientes.
+            </li>
+            <li>
+              Desde 2025 el stack principal es Rust: Actix-web, tokio, SQLx,
+              SurrealDB.
+            </li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <h3>Coini &mdash; Desarrollador blockchain</h3>
+          <p class="meta">Remoto &middot; sep 2023 &ndash; jun 2024</p>
+          <ul>
+            <li>
+              Diseñé e integré contratos en Solidity, conectando la lógica
+              on-chain con los servicios de backend.
+            </li>
+            <li>
+              Traduje requisitos de cliente en trabajo técnico en las capas de
+              backend y blockchain.
+            </li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <h3>Platzi &mdash; Student Advocate</h3>
+          <p class="meta">Remoto &middot; feb 2022 &ndash; jul 2023</p>
+          <ul>
+            <li>
+              Sostuve el soporte diario de la comunidad estudiantil en Discord,
+              correo y eventos.
+            </li>
+            <li>
+              Diseñé y dirigí sesiones de onboarding, y convertí el feedback en
+              reportes priorizados para los equipos de desarrollo.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section>
+        <h2>Stack</h2>
+        <p>
+          Rust (Actix-web, tokio, SQLx, clap, libp2p) &middot; PostgreSQL
+          &middot; SurrealDB &middot; Supabase. Python y Django para trabajo de
+          cliente, anterior y actual &middot; Docker &middot; GitHub Actions
+          &middot; TypeScript cuando el frontend lo pide.
+        </p>
+        <p class="meta">
+          Integraciones: API de Anthropic, API de OpenAI, MCP, Twilio, SendGrid,
+          APIs de Google.
+        </p>
+      </section>
+
+      <section>
+        <h2>Idiomas</h2>
+        <p>
+          Español (nativo) &middot; Inglés (fluido) &middot; Portugués (fluido)
+          &middot; Francés (básico)
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

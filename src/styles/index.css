@@ -850,9 +850,16 @@ html:has(.contact-modal[open]) {
     grid-row: 1;
   }
 
+  #home .hero-lead {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+    align-self: start;
+  }
+
   #home .hero-tags {
     grid-column: 2;
-    grid-row: 2 / span 2;
+    grid-row: 3;
     align-self: start;
   }
 
@@ -892,5 +899,84 @@ html:has(.contact-modal[open]) {
     justify-self: end;
     align-self: start;
     margin-top: 0;
+  }
+}
+
+/* Móvil: el personaje va entre el tagline y la burbuja */
+@media (max-width: 767px) {
+  #home .hero-text,
+  #home .hero-media {
+    display: contents;
+  }
+
+  #home .hero-head {
+    order: 1;
+  }
+
+  #home .hero-video {
+    order: 2;
+    justify-self: center;
+  }
+
+  #home .hero-lead {
+    order: 3;
+    justify-self: center;
+  }
+
+  #home .hero-ctas {
+    order: 4;
+    justify-self: center;
+  }
+
+  #home .hero-tags {
+    order: 5;
+    justify-self: center;
+  }
+
+  #home .hero-socials {
+    order: 6;
+    justify-self: center;
+  }
+
+  /* En móvil los CTA ocupan todo el ancho disponible: el pulgar acierta sin apuntar */
+  #home .hero-ctas {
+    width: 100%;
+  }
+
+  #home .hero-ctas .btn-wrap {
+    width: 100%;
+  }
+
+  #home .hero-ctas .face,
+  #home .hero-ctas .cv-cta {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Móvil: los botones de las tarjetas y del footer ocupan todo el ancho */
+@media (max-width: 767px) {
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .project-actions .badge,
+  .review-bubble .badge {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  footer .footer-cta-block {
+    width: 100%;
+  }
+
+  footer .btn-wrap {
+    width: 100%;
+  }
+
+  footer .btn-wrap .face {
+    width: 100%;
+    text-align: center;
   }
 }

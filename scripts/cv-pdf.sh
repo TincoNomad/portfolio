@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Genera public/cv.pdf imprimiendo /cv con Chrome.
+# Genera los PDF del CV imprimiendo /cv y /es/cv con Chrome.
 #
 # Necesita el servidor levantado en otra terminal:
 #   pnpm preview        (puerto 4321)
@@ -12,8 +12,7 @@
 set -euo pipefail
 
 PUERTO="${PUERTO:-4321}"
-SALIDA="public/cv.pdf"
-URL="http://localhost:${PUERTO}/cv"
+BASE="http://localhost:${PUERTO}"
 
 CHROME=$(ls -d "$HOME"/Library/Caches/ms-playwright/chromium-*/chrome-mac-arm64/"Google Chrome for Testing.app"/Contents/MacOS/"Google Chrome for Testing" 2>/dev/null | tail -1)
 if [ -z "${CHROME:-}" ] || [ ! -x "$CHROME" ]; then
@@ -24,17 +23,26 @@ if [ ! -x "$CHROME" ]; then
   exit 1
 fi
 
-if ! curl -sf -o /dev/null "$URL"; then
-  echo "error: $URL no responde. Levanta el servidor con: pnpm preview" >&2
-  exit 1
-fi
+generar() {
+  local ruta="$1"
+  local salida="$2"
 
-"$CHROME" \
-  --headless \
-  --disable-gpu \
-  --no-pdf-header-footer \
-  --virtual-time-budget=5000 \
-  --print-to-pdf="$SALIDA" \
-  "$URL"
+  if ! curl -sf -o /dev/null "${BASE}${ruta}"; then
+    echo "error: ${BASE}${ruta} no responde. Levanta el servidor con: pnpm preview" >&2
+    exit 1
+  fi
 
-echo "listo: $SALIDA"
+  mkdir -p "$(dirname "$salida")"
+  "$CHROME" \
+    --headless \
+    --disable-gpu \
+    --no-pdf-header-footer \
+    --virtual-time-budget=5000 \
+    --print-to-pdf="$salida" \
+    "${BASE}${ruta}"
+
+  echo "listo: $salida"
+}
+
+generar "/cv" "public/cv.pdf"
+generar "/es/cv" "public/es/cv.pdf"
