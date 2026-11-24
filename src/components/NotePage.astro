@@ -1,0 +1,51 @@
+---
+// Render compartido de una nota privada. Lo usan /<slug> y /es/<slug>:
+// cambian el idioma de la cáscara (formulario, botones, error) y el prefijo
+// con el que se vuelve después de desbloquear. El HTML de la nota es el mismo.
+export const prerender = false;
+
+import Layout from '../layouts/Layout.astro';
+import Clouds from '../components/Clouds.astro';
+import NotFound from '../components/NotFound.astro';
+import NoteLogin from '../components/NoteLogin.astro';
+import type { Lang } from '../i18n/ui';
+import '../styles/note.css';
+
+interface Props {
+    slug: string;
+    title: string;
+    /** El HTML de la nota, o null si no existe */
+    html: string | null;
+    unlocked: boolean;
+    lang: Lang;
+    /** '' para la raíz, '/es' para la versión en español */
+    base: string;
+}
+
+const { slug, title, html, unlocked, lang, base } = Astro.props;
+
+const showError = Astro.url.searchParams.has('error');
+---
+
+<Layout lang={lang} title={html ? title : '404'} description='Private document.' noindex>
+    <div class='relative w-full bg-sunset min-h-dvh flex flex-col'>
+        <Clouds perZone={3} />
+        <section class='relative z-10 flex-1 py-12 md:py-16'>
+            {
+                !html ? (
+                    <NotFound />
+                ) : !unlocked ? (
+                    <NoteLogin slug={slug} title={title} lang={lang} base={base} error={showError} />
+                ) : (
+                    <>
+                        <h1 class='has-dots mb-6 text-center'>{title}</h1>
+                        <article class='note-card'>
+                            <div class='note' set:html={html} />
+                        </article>
+                    </>
+                )
+            }
+        </section>
+    </div>
+    <div class='sunset-fade'></div>
+</Layout>

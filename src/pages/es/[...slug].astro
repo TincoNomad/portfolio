@@ -1,0 +1,13 @@
+---
+export const prerender = false;
+
+import NotePage from '../../components/NotePage.astro';
+import { loadNote } from '../../lib/notes';
+
+const slug = Astro.params.slug ?? '';
+const { html, title, unlocked } = await loadNote(slug, Astro.cookies.get('access')?.value);
+
+if (!html) Astro.response.status = 404;
+---
+
+<NotePage slug={slug} title={title} html={html} unlocked={unlocked} lang='es' base='/es' />

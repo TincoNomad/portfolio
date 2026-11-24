@@ -5,22 +5,25 @@ import type { Lang } from '../i18n/ui';
 interface Props {
     slug: string;
     title: string;
+    lang: Lang;
+    /** '' en la raíz, '/es' en la versión en español */
+    base: string;
     error?: boolean;
 }
 
-const { slug, title, error = false } = Astro.props;
+const { slug, title, lang, base, error = false } = Astro.props;
 
-const lang = Astro.currentLocale as Lang ?? 'en';
 const t = useTranslations(lang);
 ---
 
 <h1 class='has-dots mb-6 text-center'>{title}</h1>
 
 <div class='note-card note-login'>
-    <p>{t('note.private')}</p>
+    <p class='text-2xl'>{t('note.private')}</p>
 
     <form method='post' action='/api/notes/unlock'>
         <input type='hidden' name='slug' value={slug} />
+        <input type='hidden' name='base' value={base} />
 
         <label for='note-password'>{t('note.password')}</label>
         <div class='note-login-field'>

@@ -117,7 +117,7 @@ export const ui = {
     // Hero
     'hero.tagline': 'Backend Blacksmith',
     'hero.lead': 'Cuéntame qué quieres lograr.\nDiseño el sistema y lo construyo',
-    'hero.cta.work': 'Ver mis proyectos',
+    'hero.cta.work': 'Ver proyectos',
     'hero.cta.contact': 'Construyamos juntos',
     'hero.cta.cv': 'Mi CV',
     'hero.buildLabel': 'Qué construyo',

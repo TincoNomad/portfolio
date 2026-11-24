@@ -11,7 +11,11 @@ export const POST: APIRoute = async ({ request, url, cookies, redirect }) => {
     const slug = toSlug(String(form.get('slug') ?? ''));
     const password = String(form.get('password') ?? '');
 
-    const back = (query = '') => redirect(`/${slug}${query}`, 303);
+    // Solo dos valores posibles: evita que un form manipulado convierta esto
+    // en un redirect abierto.
+    const base = String(form.get('base') ?? '') === 'es' ? '/es' : '';
+
+    const back = (query = '') => redirect(`${base}/${slug}${query}`, 303);
     if (!slug) return redirect('/404', 303);
 
     const { value, metadata } = await notes().getWithMetadata(noteKey(slug));
@@ -27,7 +31,8 @@ export const POST: APIRoute = async ({ request, url, cookies, redirect }) => {
     const token = await signSession(slug, metadata.passwordHash, expiresAt);
 
     cookies.set('access', token, {
-        path: `/${slug}`,
+        // Raíz a propósito: la misma nota vive en /<slug> y en /es/<slug>
+        path: '/',
         httpOnly: true,
         sameSite: 'lax',
         secure: url.protocol === 'https:',

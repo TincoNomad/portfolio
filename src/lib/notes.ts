@@ -102,3 +102,14 @@ export async function verifySession(
     if (!Number.isFinite(expiresAt) || expiresAt < Date.now()) return false;
     return safeEqual(cookie, await signSession(slug, passwordHash, expiresAt));
 }
+
+/** Todo lo que necesita una página de nota: contenido, título y si está abierta.
+    Vive acá para que el 404 se pueda marcar en la página, donde Astro sí lo aplica. */
+export async function loadNote(slug: string, cookie: string | undefined) {
+    const { value: html, metadata } = await notes().getWithMetadata(noteKey(slug));
+    const title = metadata?.title ?? slug;
+    const passwordHash = metadata?.passwordHash;
+    const isProtected = Boolean(passwordHash && metadata?.passwordSalt);
+    const unlocked = isProtected ? await verifySession(cookie, slug, passwordHash!) : true;
+    return { html, title, unlocked };
+}
