@@ -496,9 +496,25 @@ header .btn-wrap .face {
 .project-bubble {
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 3vw, 1.5rem);
+  gap: clamp(0.75rem, 2vw, 1.25rem);
   max-width: 100%;
+  /* La crema y el borde viven en .project-content: así la captura queda
+     flotando sobre el cielo en vez de dentro de la burbuja. */
+  background: transparent;
+  border: 0;
+  padding: 0;
 }
+
+.project-bubble .project-content {
+  background: var(--color-cream);
+  border: var(--border-w) solid var(--color-black);
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 
 /* Cola a la derecha en las tarjetas de la columna derecha */
 .projects-grid .project-bubble:nth-child(even) {
@@ -753,7 +769,7 @@ html:has(.contact-modal[open]) {
 
 .project-image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 2280 / 1260;
   object-fit: cover;
   display: block;
   border-radius: var(--radius-sm);
