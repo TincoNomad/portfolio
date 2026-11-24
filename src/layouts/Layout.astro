@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import ContactModal from '../components/ContactModal.astro'
+import ImageZoom from '../components/ImageZoom.astro'
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import '../styles/index.css'
@@ -55,6 +56,7 @@ const personSchema = JSON.stringify({
         </main>
         <Footer />
         <ContactModal />
+        <ImageZoom />
 	</body>
 </html>
 

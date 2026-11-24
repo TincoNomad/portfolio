@@ -1,0 +1,112 @@
+---
+// Modal para leer las capturas de código de las tarjetas de proyecto.
+// Usa <dialog> nativo: el navegador ya da backdrop, foco y cierre con Esc.
+---
+
+<dialog id='zoom' class='zoom' aria-label='Imagen ampliada'>
+  <button type='button' class='zoom-close' aria-label='Cerrar'>×</button>
+  <img alt='' />
+</dialog>
+
+<style is:global>
+  .project-image {
+    cursor: zoom-in;
+  }
+
+  dialog.zoom {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    /* Sin estos topes el navegador lo centra mal: la caja queda más ancha que la pantalla */
+    max-width: 94vw;
+    max-height: 92vh;
+    overflow: visible;
+
+    /* Estado final: visible y a escala 1 */
+    opacity: 1;
+    transform: scale(1);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      overlay 0.2s allow-discrete,
+      display 0.2s allow-discrete;
+  }
+
+  /* Estado inicial: sin @starting-style no hay animación de entrada */
+  @starting-style {
+    dialog.zoom[open] {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+  }
+
+  dialog.zoom:not([open]) {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  dialog.zoom::backdrop {
+    background: rgb(0 0 0 / 0.86);
+  }
+
+  dialog.zoom img {
+    display: block;
+    max-width: 92vw;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-md, 14px);
+    border: 2px solid rgb(255 255 255 / 0.12);
+    box-shadow: 0 30px 90px rgb(0 0 0 / 0.6);
+  }
+
+  .zoom-close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2.5px solid #111;
+    background: #fdf6e3;
+    color: #111;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .zoom-close:hover {
+    background: #f5a623;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    dialog.zoom {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const dialogo = document.getElementById('zoom') as HTMLDialogElement | null;
+  const imagen = dialogo?.querySelector('img');
+
+  if (dialogo && imagen) {
+    document.querySelectorAll<HTMLImageElement>('.project-image').forEach((mini) => {
+      mini.addEventListener('click', () => {
+        imagen.src = mini.src;
+        imagen.alt = mini.alt;
+        dialogo.showModal();
+      });
+    });
+
+    // Un clic fuera de la imagen cierra. El <dialog> no lo hace solo.
+    dialogo.addEventListener('click', (evento) => {
+      if (evento.target === dialogo) dialogo.close();
+    });
+
+    dialogo.querySelector('.zoom-close')?.addEventListener('click', () => dialogo.close());
+  }
+</script>
